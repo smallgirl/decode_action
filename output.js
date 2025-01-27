@@ -266,11 +266,14 @@ KKYS.aes = function () {
 };
 KKYS.safePlay = function () {
   let _0x3e87b3 = window.whatTMDwhatTMDKKKK || "VNF9aVQF!G*0ux@2hAigUeH3";
+  alert(_0x3e87b3);
+
   return {
     url: function (_0x568646 = _0x3e87b3) {
       try {
         var _0x527427 = CryptoJS.enc.Utf8.parse(_0x568646);
         let _0x264b22 = window.whatTMDwhatTMDPPPP;
+          alert(_0x264b22);
         var _0x33e517 = CryptoJS.enc.Base64.parse(_0x264b22);
         const _0x240c87 = {
           ciphertext: _0x33e517
@@ -280,6 +283,7 @@ KKYS.safePlay = function () {
             padding: CryptoJS.pad.Pkcs7
           }),
           _0x4f3e21 = _0x358b25.toString(CryptoJS.enc.Utf8);
+            alert(_0x4f3e21);
         return _0x4f3e21;
       } catch (_0x38162c) {
         return "123456";
