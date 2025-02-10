@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>云播放器</title>
+        <script type="text/javascript" src="https://cdn.aiqingyu1314.com/jx/20230723ver/Play/global.min.js?v=20240310">
+        </script>
+        <script>
+            var Host = document.domain;
+            var Domain = "43.240.156.118:8443";
+            var Api = "https://43.240.156.118:8443/vip";
+        </script>
+     
+    </head>
+    <body>
+        <script>
+            const go = new Go();
+            go.importObject.env["syscall/js.finalizeRef"] = () => {};
+            function loadWasm(ii1I1l, ii1I1i) {
+              fetch(ii1I1l).then(iI1liI => iI1liI.arrayBuffer()).then(l1lIiI => WebAssembly.instantiate(l1lIiI, go.importObject)).then(llliiI => {
+                var i1i1I1 = llliiI.instance;
+                ii1I1i(i1i1I1);
+              });
+            }
+            loadWasm('https://cdn.aiqingyu1314.com/jx/20230723ver/Play/main156118.wasm?v=20240310', function (IlII1) {
+              go.run(IlII1);
+              console.log("main.wasm is loaded");
+              decryptApi('D66B00DF8EE11E814EC574DF8522B446227720C18BE86D93B623F96D58DBD0F263C01DCA09450071D7DB76AE1233036B0702A33EB5108D0BF4469932DCDFFF0DD42A478676205B67ADD0E03E59D14C5F514942A6274884716C68A734A9480F34FD5B9AD6BC0C5060895ADB08C401569729EABCE515FF4B93E29B85D0421B12C1BDC9D1024FCF001D58AA7B59CA06B22B515411ED47284B1E68D49981DB6343339787C646AA6C46696F0AFC843582BD3C9E6E3A42AD453978CE29C59F1624A842C4769836E0DDC9638B6CF606D3FA3F85602BECF30C3200B774EEC120FF02C3A9AD30BD03E0226C702D851B023D3A755A3F0F0D4271443B3DC58D4C646241A336843B34AD0355775025B13EFF5C8FFD6F1B6556F0D2C7DB845EA636552864E1565B483A2C45E58B11162CE8F4CD4CBCA18A84596B7A4DD1BFE311687A301C9B01F697FB88A4AE7F44B07C1C4CD5B5A93ACF40A0591278B496D12865D9D9D5388CDC92F7246A59111F63A0DE512D5CA6B856FA60FB0B40861D26F61680AB85822437B5355ECDFBE744257BADB4B35148E6D319708C863FDAEAC0625F0157146357D45C893960010ACC2F52912B24FC1EB3CD8EC0DDCA2577E4D8B2B7418FBC9D6CDE78D169A1AFDD0A27DE3316CC4BE05B471A9C2117ACF834AF3F4050F9EAB6571C1324F64AD6A8D51595C43FA95C66BBA93EE0A699348520FE68710FACD488621B54689E4DA4BFB1A2587FE9222CD58E597A4DD2C1346FC1CDF890710F496EBEB66FC5E7F58FA2892A1510E24F9261681ED61B0ED2875378D4007F16D37B392F');
+            });
+            
+            function decryptApi(url) {
+                window.webkit.messageHandlers.ageDecrypt.postMessage(hxm_decrypt(url))
+            }
+            
+            function encryptApi(url) {
+                window.webkit.messageHandlers.ageEncrypt.postMessage(hxm_decrypt(url))
+            }
+        </script>
+    </body>
+</html>
