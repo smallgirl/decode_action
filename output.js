@@ -22289,11 +22289,14 @@ var U8 = ig((Jt, Xt) => {
             finalize: function (_) {
               _ && this._append(_);
               var w = this._doFinalize();
+              console.log(w);
               return w;
             },
             blockSize: 16,
             _createHelper: function (_) {
               return function (w, b) {
+                console.log(w);
+                 console.log(_);
                 return new _.init(b).finalize(w);
               };
             },
@@ -22315,6 +22318,7 @@ var U8 = ig((Jt, Xt) => {
       e.exports = r(T8());
     })(Gn, function (n) {
       return function (r) {
+
         var o = n,
           s = o.lib,
           i = s.WordArray,
@@ -22329,6 +22333,8 @@ var U8 = ig((Jt, Xt) => {
             this._hash = new i.init([1732584193, 4023233417, 2562383102, 271733878]);
           },
           _doProcessBlock: function (d, y) {
+             console.trace(); // 打印调用堆栈
+             console.log("Processing Block Data:", d); // 添加日志以打印当前数据块
             for (var g = 0; g < 16; g++) {
               var _ = y + g,
                 w = d[_];
@@ -22359,9 +22365,12 @@ var U8 = ig((Jt, Xt) => {
           },
           _doFinalize: function () {
             var d = this._data,
+
               y = d.words,
               g = this._nDataBytes * 8,
               _ = d.sigBytes * 8;
+                console.log(d); // 添加日志以打印当前数据块
+
             y[_ >>> 5] |= 128 << 24 - _ % 32;
             var w = r.floor(g / 4294967296),
               b = g;
@@ -22397,8 +22406,12 @@ var U8 = ig((Jt, Xt) => {
       }(Math), n.MD5;
     });
   })(Gv);
+
   var O8 = Gv.exports;
   const x8 = Zm(O8),
+
+  //http://music.163.com/#/song?id=189602
+
     A8 = {
       class: "common-layout"
     },
@@ -22507,6 +22520,7 @@ var U8 = ig((Jt, Xt) => {
             }
           },
           f = w => x8(w).toString(),
+
           h = w => w.includes("http") && (w.includes("music.163.com") || w.includes("163cn.tv")),
           m = w => {
             const b = /https?:\/\/\S+/g,
@@ -22534,6 +22548,7 @@ var U8 = ig((Jt, Xt) => {
                 default:
                   throw new Error("Invalid API type");
               }
+
               const I = {
                   url: m(r.url),
                   level: r.region,
