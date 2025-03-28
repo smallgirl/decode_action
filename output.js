@@ -153,24 +153,50 @@ function It(e) {
       _0x12ab4a: 295
     },
     n = oe,
-    r = new TextEncoder()[n(276)](e);
-  for (let s = 0, i = r[n(291)] - 1; s < i; s++, i--) {
+
+    //r = new TextEncoder()[n(276)](e);
+    r = new TextEncoder()["encode"](e);
+    // alert(27699);
+    // alert(n(276));// encode
+    // alert(r);// encode
+    // alert(n(291));// length
+    // alert(n(305));// fromCharCode
+    // alert(n(t._0x12ab4a));// charCodeAt
+  // for (let s = 0, i = r[n(291)] - 1; s < i; s++, i--) {
+  for (let s = 0, i = r["length"] - 1; s < i; s++, i--) {
     const c = r[s];
     r[s] = r[i], r[i] = c;
   }
-  const o = "x"[n(t._0x12ab4a)](0);
-  for (let s = 0; s < r[n(291)]; s++) r[s] ^= o;
-  for (let s = 0, i = r[n(291)] - 1; s < i; s++, i--) {
+  const o = "x"["charCodeAt"](0);
+ // alert(o); //120
+  for (let s = 0; s < r["length"]; s++) r[s] ^= o;
+  for (let s = 0, i = r["length"] - 1; s < i; s++, i--) {
     const c = r[s];
     r[s] = r[i], r[i] = c;
   }
-  return btoa(String[n(305)].apply(null, r));
+  return btoa(String['fromCharCode'].apply(null, r));
 }
 function Tt(e, t) {
-  const n = oe;
+   const n = oe;
+ if (String(t).includes("/v1/search/disk")) {
+   // alert(e);
+    alert(t);
+    // alert(n(286));
+    // alert(n(304));
+ }
+ 
+ 
   t[n(286)]();
   const r = t.join(n(304)),
     o = e + r;
+   console.log(e); 
+  if (String(t).includes("/v1/search/disk")) {
+    //alert(r);
+     alert(t);
+    alert(o); 
+    alert(Qt.md5(o));
+ }
+
   return Qt.md5(o);
 }
 function Ue() {
