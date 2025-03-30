@@ -167,6 +167,7 @@ function Pt(e) {
     const c = r[s];
     r[s] = r[i], r[i] = c;
   }
+  //alert(btoa(String.fromCharCode[n(480)](null, r)));
   return btoa(String.fromCharCode[n(480)](null, r));
 }
 function Nt(e, t) {
@@ -176,9 +177,13 @@ function Nt(e, t) {
       _0x3f64a7: 492
     },
     r = oe;
+
   t[r(n._0x16475c)]();
   const o = t[r(n._0x2fbfdc)](r(n._0x3f64a7)),
     s = e + o;
+     if (String(t).includes("/v1/search/disk") || String(t).includes("adv_params")) {
+       //alert(s);
+     }
   return $t.md5(s);
 }
 function Bt(e) {
@@ -591,8 +596,12 @@ dt[Z(345)][Z(340)][Z(372)](e => {
   e[n(t._0x46b599)] = e[n(379)] || {};
   const r = localStorage[n(355)]("token");
   r && (e[n(t._0x46b599)][n(383)] = n(366) + r);
-  let o = new Date()[n(t._0x474569)]()[n(t._0x53cc0a)](),
+ // alert(n(t._0x474569));
+  //alert(n(t._0x53cc0a));
+  var o = (new Date().getTime() + 1000).toString(),
     s = e[n(377)] || "";
+   // alert(o);
+   // o = (new Date().getTime() - 1000).toString();
   return e[n(t._0x30ca0b)][n(t._0x38c4a1)] = o, e.headers[n(373)] = s, (i = window == null ? void 0 : window[n(t._0x2c2d5d)]) != null && i[n(357)] && (e[n(t._0x2bd6a4)]["X-Sign"] = Nt(Pt(window.APP_CONFIG[n(357)]), [s, o]), e[n(379)][n(387)] = Nt(Pt(window[n(375)][n(t._0x12cc27)]), [JSON[n(356)](e[n(360)])])), e;
 }, e => {}), dt[Z(345)][Z(371)][Z(372)](e => {
   const t = {
