@@ -1,4 +1,4 @@
-//Fri Mar 28 2025 09:44:30 GMT+0000 (Coordinated Universal Time)
+//Sun Mar 30 2025 01:52:55 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
 const __vite__mapDeps = (i, m = __vite__mapDeps, d = m.f || (m.f = ["assets/AdminPage-Co9YRHqn.js", "assets/ui-BmYIIk9h.js", "assets/libs-B0HYhnqd.js", "assets/react-DCwPVyVd.js", "assets/ui-B05z0pTK.css", "assets/AdminPage-B90_XiqX.css", "assets/RegisterPage-Dceo626S.js", "assets/RegisterPage-15tkRjBg.css", "assets/ArrListPage-BfsZJmzc.js", "assets/SearchHotPage-CaRtFXNi.js", "assets/SearchHotPage-DXDAKPhA.css", "assets/ListWordPage-B4bUzLFN.js", "assets/TooltipBtn-CSKdJmJd.js", "assets/common-CvXQmsAi.js", "assets/ConfigPage-DpbNWYNX.js", "assets/disk_types-C-JHkRDb.js", "assets/ConfigPage-Cf8EBRSC.css", "assets/FilmHotPage-DbKcm4qe.js", "assets/ListDiskPage-BGLI48L_.js", "assets/TaskStatus-Baj2xOBv.js", "assets/PermissionNotice-Btv4bs2M.js", "assets/PermissionNotice-Dlc91QnR.css", "assets/ImportDiskBtn-DyNiLvwZ.js", "assets/ListDiskTaskPage-C8oT6WgC.js", "assets/ListFeedbackPage-DvrtuWQr.js", "assets/ListGoodsPage-HC1udnNx.js", "assets/ListStorePage-CApCadJo.js", "assets/UserDiskModal-Ba-rLVsM.js", "assets/ListUserPage-ChthW4PP.js", "assets/CatePage-BNLEwfWp.js", "assets/search-jbU9pykt.js", "assets/search-Caj-zmAc.css", "assets/CopyrightPage-Dq7xkiOd.js", "assets/CopyrightPage-J_kGB-rF.css", "assets/SearchItem-CClmSdMq.js", "assets/SearchItem-BlwsZxTE.css", "assets/CatePage-CEQBEplF.css", "assets/CategoryPage-0a8V_1BK.js", "assets/CategoryPage-CiGp8DVY.css", "assets/DocPage-DEMgRPZT.js", "assets/DocPage-BsaiWvaO.css", "assets/WordPage-DpZDCUE8.js", "assets/IndexPage-DQO_Tf0L.js", "assets/IndexPage-DRyOWcNP.css", "assets/WordPage-W1dvis7r.css", "assets/ProfilePage-Df2VrqBS.js", "assets/ProfilePage-BqwPhnc6.css", "assets/SubmitPage-DM-qEu33.js", "assets/SubmitPage-D35_SDm2.css", "assets/TalentPage-15JfZ-r3.js", "assets/TalentPage-CjnVYE05.css"])) => i.map(i => d[i]);
@@ -167,7 +167,6 @@ function Pt(e) {
     const c = r[s];
     r[s] = r[i], r[i] = c;
   }
-  //alert(btoa(String.fromCharCode[n(480)](null, r)));
   return btoa(String.fromCharCode[n(480)](null, r));
 }
 function Nt(e, t) {
@@ -177,13 +176,9 @@ function Nt(e, t) {
       _0x3f64a7: 492
     },
     r = oe;
-
   t[r(n._0x16475c)]();
   const o = t[r(n._0x2fbfdc)](r(n._0x3f64a7)),
     s = e + o;
-     if (String(t).includes("/v1/search/disk") || String(t).includes("adv_params")) {
-       //alert(s);
-     }
   return $t.md5(s);
 }
 function Bt(e) {
@@ -596,12 +591,8 @@ dt[Z(345)][Z(340)][Z(372)](e => {
   e[n(t._0x46b599)] = e[n(379)] || {};
   const r = localStorage[n(355)]("token");
   r && (e[n(t._0x46b599)][n(383)] = n(366) + r);
- // alert(n(t._0x474569));
-  //alert(n(t._0x53cc0a));
-  var o = (new Date().getTime() + 1000).toString(),
+  let o = new Date()[n(t._0x474569)]()[n(t._0x53cc0a)](),
     s = e[n(377)] || "";
-   // alert(o);
-   // o = (new Date().getTime() - 1000).toString();
   return e[n(t._0x30ca0b)][n(t._0x38c4a1)] = o, e.headers[n(373)] = s, (i = window == null ? void 0 : window[n(t._0x2c2d5d)]) != null && i[n(357)] && (e[n(t._0x2bd6a4)]["X-Sign"] = Nt(Pt(window.APP_CONFIG[n(357)]), [s, o]), e[n(379)][n(387)] = Nt(Pt(window[n(375)][n(t._0x12cc27)]), [JSON[n(356)](e[n(360)])])), e;
 }, e => {}), dt[Z(345)][Z(371)][Z(372)](e => {
   const t = {
