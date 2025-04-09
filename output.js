@@ -159,5 +159,11 @@ function s(_0xa184d8) {
     _0x5e1e21 = _0x3096b2 + "s" + _0xa184d8 + "s" + _0x545b26,
     md5Result = md5(_0x5e1e21),
     _0x2c2b88 = md5Result.slice(-8).toUpperCase();
+    alert(_0x5e1e21);
+    alert(version);
+    alert(_0x3096b2);
+    alert(_0x545b26);
+    alert(_0x5e1e21);
+    alert(_0x2c2b88);
   return _0x2c2b88;
 }
