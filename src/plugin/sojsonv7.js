@@ -1,17 +1,31 @@
 /**
  * For jsjiami.com.v7
  */
-const { parse } = require('@babel/parser')
-const generator = require('@babel/generator').default
-const traverse = require('@babel/traverse').default
-const t = require('@babel/types')
-const ivm = require('isolated-vm')
-const PluginEval = require('./eval.js')
+import { parse } from '@babel/parser'
+import _generate from '@babel/generator'
+const generator = _generate.default
+import _traverse from '@babel/traverse'
+const traverse = _traverse.default
+import * as t from '@babel/types'
+import ivm from 'isolated-vm'
+import PluginEval from './eval.js'
+import calculateConstantExp from '../visitor/calculate-constant-exp.js'
+import deleteIllegalReturn from '../visitor/delete-illegal-return.js'
+import deleteUnusedVar from '../visitor/delete-unused-var.js'
+import parseControlFlowStorage from '../visitor/parse-control-flow-storage.js'
+import pruneIfBranch from '../visitor/prune-if-branch.js'
+import splitSequence from '../visitor/split-sequence.js'
 
 const isolate = new ivm.Isolate()
 const globalContext = isolate.createContextSync()
 function virtualGlobalEval(jsStr) {
   return globalContext.evalSync(String(jsStr))
+}
+function evalOneTime(str) {
+  const vm = new ivm.Isolate()
+  const ret = vm.createContextSync().evalSync(String(str))
+  vm.dispose()
+  return ret
 }
 
 function decodeGlobal(ast) {
@@ -276,7 +290,11 @@ function decodeGlobal(ast) {
     if (item.path.isFunctionDeclaration()) {
       scope = item.path.parentPath.scope
     }
-    const refs = scope.bindings[cur_val].referencePaths
+    // var is function scoped and let is block scoped
+    // Hence, var may not be in the current scope, e.g., in a for-loop
+    const binding = scope.getBinding(cur_val)
+    scope = binding.scope
+    const refs = binding.referencePaths
     const refs_next = []
     for (let ref of refs) {
       const parent = ref.parentPath
@@ -287,12 +305,21 @@ function decodeGlobal(ast) {
           path: parent,
           code: 'var ' + parent,
         })
+      } else if (ref.key === 'right') {
+        // AssignmentExpression
+        refs_next.push({
+          name: parent.node.left.name,
+          path: parent,
+          code: 'var ' + parent,
+        })
       } else if (ref.key === 'object') {
         // MemberExpression
         memToStr(parent)
       } else if (ref.key === 'callee') {
         // CallExpression
         funToStr(parent)
+      } else {
+        console.error('Unexpected reference')
       }
     }
     for (let ref of refs_next) {
@@ -311,65 +338,6 @@ function decodeGlobal(ast) {
   }
   dfs([], root)
   return ast
-}
-
-function purifyBoolean(path) {
-  // 简化 ![] 和 !![]
-  const node0 = path.node
-  if (node0.operator !== '!') {
-    return
-  }
-  const node1 = node0.argument
-  if (t.isArrayExpression(node1) && node1.elements.length === 0) {
-    path.replaceWith(t.booleanLiteral(false))
-    return
-  }
-  if (!t.isUnaryExpression(node1) || node1.operator !== '!') {
-    return
-  }
-  const node2 = node1.argument
-  if (t.isArrayExpression(node2) && node2.elements.length === 0) {
-    path.replaceWith(t.booleanLiteral(true))
-  }
-}
-
-function cleanIFCode(path) {
-  function clear(path, toggle) {
-    // 判定成立
-    if (toggle) {
-      if (path.node.consequent.type == 'BlockStatement') {
-        path.replaceWithMultiple(path.node.consequent.body)
-      } else {
-        path.replaceWith(path.node.consequent)
-      }
-      return
-    }
-    // 判定不成立
-    if (!path.node.alternate) {
-      path.remove()
-      return
-    }
-    if (path.node.alternate.type == 'BlockStatement') {
-      path.replaceWithMultiple(path.node.alternate.body)
-    } else {
-      path.replaceWith(path.node.alternate)
-    }
-  }
-  // 判断判定是否恒定
-  const test = path.node.test
-  const types = ['StringLiteral', 'NumericLiteral', 'BooleanLiteral']
-  if (test.type === 'BinaryExpression') {
-    if (
-      types.indexOf(test.left.type) !== -1 &&
-      types.indexOf(test.right.type) !== -1
-    ) {
-      const left = JSON.stringify(test.left.value)
-      const right = JSON.stringify(test.right.value)
-      clear(path, eval(left + test.operator + right))
-    }
-  } else if (types.indexOf(test.type) !== -1) {
-    clear(path, eval(JSON.stringify(test.value)))
-  }
 }
 
 function cleanSwitchCode1(path) {
@@ -482,12 +450,13 @@ function cleanSwitchCode2(path) {
     }
     let test = '' + pre_path
     try {
-      arr = eval(test + `;${arrName}`)
+      arr = evalOneTime(test + `;${arrName}.join('|')`)
+      arr = arr.split('|')
     } catch {
       //
     }
   }
-  if (!arr) {
+  if (!Array.isArray(arr)) {
     return
   }
   console.log(`扁平化还原: ${arrName}[${argName}]`)
@@ -527,9 +496,8 @@ function cleanSwitchCode2(path) {
 }
 
 function cleanDeadCode(ast) {
-  traverse(ast, { UnaryExpression: purifyBoolean })
-  traverse(ast, { IfStatement: cleanIFCode })
-  traverse(ast, { ConditionalExpression: cleanIFCode })
+  traverse(ast, calculateConstantExp)
+  traverse(ast, pruneIfBranch)
   traverse(ast, { WhileStatement: { exit: cleanSwitchCode1 } })
   traverse(ast, { ForStatement: { exit: cleanSwitchCode2 } })
   return ast
@@ -748,54 +716,8 @@ function purifyFunction(path) {
 function purifyCode(ast) {
   // 净化拼接字符串的函数
   traverse(ast, { AssignmentExpression: purifyFunction })
-  // 净化变量定义中的常量数值
-  function purifyDecl(path) {
-    if (t.isNumericLiteral(path.node.init)) {
-      return
-    }
-    const name = path.node.id.name
-    const { code } = generator(
-      {
-        type: 'Program',
-        body: [path.node.init],
-      },
-      {
-        compact: true,
-      }
-    )
-    const valid = /^[-+*/%!<>&|~^ 0-9;]+$/.test(code)
-    if (!valid) {
-      return
-    }
-    if (/^[-][0-9]*$/.test(code)) {
-      return
-    }
-    const value = eval(code)
-    const node = t.valueToNode(value)
-    path.replaceWith(t.variableDeclarator(path.node.id, node))
-    console.log(`替换 ${name}: ${code} -> ${value}`)
-  }
-  traverse(ast, { VariableDeclarator: purifyDecl })
-  // 合并字符串
-  let end = false
-  function combineString(path) {
-    const op = path.node.operator
-    if (op !== '+') {
-      return
-    }
-    const left = path.node.left
-    const right = path.node.right
-    if (!t.isStringLiteral(left) || !t.isStringLiteral(right)) {
-      return
-    }
-    end = false
-    path.replaceWith(t.StringLiteral(eval(path + '')))
-    console.log(`合并字符串: ${path.node.value}`)
-  }
-  while (!end) {
-    end = true
-    traverse(ast, { BinaryExpression: combineString })
-  }
+  // 计算常量表达式
+  traverse(ast, calculateConstantExp)
   // 替换索引器
   function FormatMember(path) {
     // _0x19882c['removeCookie']['toString']()
@@ -819,28 +741,7 @@ function purifyCode(ast) {
   }
   traverse(ast, { MemberExpression: FormatMember })
   // 分割表达式
-  function removeComma(path) {
-    // a = 1, b = ddd(), c = null;
-    //  |
-    //  |
-    //  |
-    //  v
-    // a = 1;
-    // b = ddd();
-    // c = null;
-    if (!t.isExpressionStatement(path.parent)) {
-      return
-    }
-    let replace_path = path.parentPath
-    if (replace_path.listKey !== 'body') {
-      return
-    }
-    for (const item of path.node.expressions) {
-      replace_path.insertBefore(t.expressionStatement(item))
-    }
-    replace_path.remove()
-  }
-  traverse(ast, { SequenceExpression: { exit: removeComma } })
+  traverse(ast, splitSequence)
   // 删除空语句
   traverse(ast, {
     EmptyStatement: (path) => {
@@ -848,11 +749,10 @@ function purifyCode(ast) {
     },
   })
   // 删除未使用的变量
-  const deleteUnusedVar = require('../visitor/delete-unused-var')
   traverse(ast, deleteUnusedVar)
 }
 
-module.exports = function (code) {
+export default function (code) {
   let ret = PluginEval.unpack(code)
   let global_eval = false
   if (ret) {
@@ -867,7 +767,6 @@ module.exports = function (code) {
     return null
   }
   // IllegalReturn
-  const deleteIllegalReturn = require('../visitor/delete-illegal-return')
   traverse(ast, deleteIllegalReturn)
   // 清理二进制显示内容
   traverse(ast, {
@@ -886,7 +785,6 @@ module.exports = function (code) {
     return null
   }
   console.log('处理代码块加密...')
-  const parseControlFlowStorage = require('../visitor/parse-control-flow-storage')
   traverse(ast, parseControlFlowStorage)
   console.log('清理死代码...')
   ast = cleanDeadCode(ast)

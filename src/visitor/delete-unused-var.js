@@ -1,4 +1,4 @@
-const t = require('@babel/types')
+import * as t from '@babel/types'
 
 /**
  * Delete unused variables with the following exceptions:
@@ -7,12 +7,15 @@ const t = require('@babel/types')
  * - ForInStatement
  *
  */
-module.exports = {
+export default {
   VariableDeclarator: (path) => {
     const { node, scope } = path
     const name = node.id.name
     const binding = scope.getBinding(name)
     if (!binding || binding.referenced || !binding.constant) {
+      return
+    }
+    if (node.init && !t.isLiteral(node.init)) {
       return
     }
     const up1 = path.parentPath
