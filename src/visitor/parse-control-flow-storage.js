@@ -1,6 +1,5 @@
-import _generate from '@babel/generator'
-const generator = _generate.default
-import * as t from '@babel/types'
+const generator = require('@babel/generator').default
+const t = require('@babel/types')
 
 function parseObject(path) {
   let node = path.node
@@ -138,7 +137,6 @@ function parseObject(path) {
       }
     }
   }
-  path.scope.crawl()
   // 如果没有全部使用 就先不删除
   if (usedCount !== bind.length) {
     console.log(`不完整使用: ${objName} ${usedCount}/${bind.length}`)
@@ -191,7 +189,7 @@ function parseObject(path) {
  * var ee = A[x][y][...];
  * ```
  */
-export default {
+module.exports = {
   VariableDeclarator: {
     exit: parseObject,
   },

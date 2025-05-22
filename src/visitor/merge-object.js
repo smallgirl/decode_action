@@ -1,4 +1,4 @@
-import * as t from '@babel/types'
+const t = require('@babel/types')
 
 function mergeObject(path) {
   const { id, init } = path.node
@@ -162,7 +162,7 @@ function mergeObject(path) {
   } else {
     path.remove()
   }
-  binding.scope.crawl()
+  scope.crawl()
 }
 
 /**
@@ -206,6 +206,6 @@ function mergeObject(path) {
  * - Constant objects in the original code can be splitted
  * - AssignmentExpression can be moved to ReturnStatement
  */
-export default {
+module.exports = {
   VariableDeclarator: mergeObject,
 }

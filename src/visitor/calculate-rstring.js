@@ -1,11 +1,10 @@
-import _generate from '@babel/generator'
-const generator = _generate.default
-import * as t from '@babel/types'
+const generator = require('@babel/generator').default
+const t = require('@babel/types')
 
 /**
  * "sh".split("").reverse().join("") -> "hs"
  */
-export default {
+module.exports = {
   StringLiteral(path) {
     if (path.key !== 'object') {
       return

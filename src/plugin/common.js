@@ -1,14 +1,8 @@
-import { parse } from '@babel/parser'
-import _generate from '@babel/generator'
-const generator = _generate.default
-import _traverse from '@babel/traverse'
-const traverse = _traverse.default
-import deleteUnreachableCode from '../visitor/delete-unreachable-code.js'
-import deleteNestedBlocks from '../visitor/delete-nested-blocks.js'
-import calculateConstantExp from '../visitor/calculate-constant-exp.js'
-import calculateRString from '../visitor/calculate-rstring.js'
+const { parse } = require('@babel/parser')
+const generator = require('@babel/generator').default
+const traverse = require('@babel/traverse').default
 
-export default function (code) {
+module.exports = function (code) {
   let ast
   try {
     ast = parse(code, { errorRecovery: true })
@@ -16,9 +10,11 @@ export default function (code) {
     console.error(`Cannot parse code: ${e.reasonCode}`)
     return null
   }
-  traverse(ast, deleteUnreachableCode)
-  traverse(ast, deleteNestedBlocks)
-  traverse(ast, calculateConstantExp)
+  const deleteExtra = require('../visitor/delete-extra')
+  traverse(ast, deleteExtra)
+  const calculateBinary = require('../visitor/calculate-binary')
+  traverse(ast, calculateBinary)
+  const calculateRString = require('../visitor/calculate-rstring')
   traverse(ast, calculateRString)
   code = generator(ast).code
   return code

@@ -1,6 +1,5 @@
 {
   "name": "decode-js",
-  "type": "module",
   "scripts": {
     "decode": "node src/main.js",
     "deob": "node src/main.js -t obfuscator",

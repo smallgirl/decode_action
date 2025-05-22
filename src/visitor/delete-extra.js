@@ -2,7 +2,7 @@
  * 0x10 -> 16, "\u0058" -> "X"
  * not ASCII-safe (disable jsescOption:minimal to keep ASCII-safe)
  */
-export default {
+module.exports = {
   StringLiteral: ({ node }) => {
     delete node.extra
   },
