@@ -1,95 +1,648 @@
-//Fri Jun 20 2025 07:41:22 GMT+0000 (Coordinated Universal Time)
+//Wed Aug 06 2025 05:55:40 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-!function (n) {
-  "use strict";
-
-  function _0xe0df2f(n, t) {
-    var _0x8cfg = 4;
-    var r = (65535 & n) + (65535 & t);
-    _0x8cfg = 7;
-    return (n >> 16) + (t >> 16) + (r >> 16) << 16 | 65535 & r;
+var YKQ = {
+  "versions": function () {
+    var _0x400b4c = navigator.userAgent,
+      _0x11ab90 = navigator.appVersion;
+    return {
+      "trident": _0x400b4c.indexOf("Trident") > -1,
+      "presto": _0x400b4c.indexOf("Presto") > -1,
+      "webKit": _0x400b4c.indexOf("AppleWebKit") > -1,
+      "gecko": _0x400b4c.indexOf("Gecko") > -1 && _0x400b4c.indexOf("KHTML") == -1,
+      "mobile": !!_0x400b4c.match(/AppleWebKit.*Mobile.*/),
+      "ios": !!_0x400b4c.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+      "android": _0x400b4c.indexOf("Android") > -1 || _0x400b4c.indexOf("Adr") > -1,
+      "iPhone": _0x400b4c.indexOf("iPhone") > -1,
+      "iPad": _0x400b4c.indexOf("iPad") > -1,
+      "webApp": _0x400b4c.indexOf("Safari") == -1,
+      "weixin": _0x400b4c.indexOf("MicroMessenger") > -1,
+      "qq": _0x400b4c.match(/\sQQ/i) == " qq"
+    };
+  }(),
+  "start": function () {
+    $.ajax({
+      "url": "/admin/api.php",
+      "dataType": "json",
+      "success": function (_0x4f0b5a) {
+        YKQ.waittime = _0x4f0b5a.data.waittime;
+        YKQ.ads = _0x4f0b5a.data.ads;
+        config.logo = _0x4f0b5a.data.logo;
+        up.pbgjz = _0x4f0b5a.data.pbgjz;
+        up.trysee = _0x4f0b5a.data.trytime;
+        config.sendtime = _0x4f0b5a.data.sendtime;
+        config.color = _0x4f0b5a.data.color;
+        config.dmrule = _0x4f0b5a.data.dmrule;
+        danmuon = _0x4f0b5a.data.danmuon;
+        if (YKQ.ads.state == "on") {
+          if (YKQ.ads.set.state == "1") YKQ.MYad.vod(YKQ.ads.set.vod.url, YKQ.ads.set.vod.link);else YKQ.ads.set.state == "2" && YKQ.MYad.pic(YKQ.ads.set.pic.link, YKQ.ads.set.pic.time, YKQ.ads.set.pic.img);
+        } else YKQ.play(rc4(config.url, "202512221638052109", 1));
+      }
+    });
+  },
+  "play": function (_0x3991d9) {
+    !danmuon ? YKQ.player.play(_0x3991d9) : config.av != "" ? YKQ.player.bdplay(_0x3991d9) : YKQ.player.dmplay(_0x3991d9);
+    $(function () {
+      $(".yzmplayer-setting-speeds,.yzmplayer-setting-speed-item").on("click", function () {
+        $(".speed-stting").toggleClass("speed-stting-open");
+      });
+      $(".speed-stting .yzmplayer-setting-speed-item").click(function () {
+        $(".yzmplayer-setting-speeds  .title").text($(this).text());
+      });
+    });
+    $(".yzmplayer-fulloff-icon").on("click", function () {
+      YKQ.dp.fullScreen.cancel();
+    });
+    $(".yzmplayer-showing").on("click", function () {
+      YKQ.dp.play();
+      $(".vod-pic").remove();
+    });
+    config.title != "" && $("#vodtitle").html(config.title + "  " + config.sid);
+  },
+  "dmid": function () {
+    if (up.diyid[0] == 0 && config.id != "") a = config.id, b = config.sid;else (up.diyid[0] == 1 || !config.id) && (a = up.diyid[1], b = up.diyid[2]);
+    YKQ.id = a + " P" + b;
+  },
+  "load": function () {
+    setTimeout(function () {
+      $("#link1").fadeIn();
+    }, 100);
+    setTimeout(function () {
+      $("#link1-success").fadeIn();
+    }, 500);
+    setTimeout(function () {
+      $("#link2").show();
+    }, 1000);
+    setTimeout(function () {
+      $("#link3,#span").fadeIn();
+    }, 2000);
+    if (YKQ.versions.weixin && (YKQ.versions.ios || YKQ.versions.iPad)) {
+      var _0x49a263 = "<style type=\"text/css\">";
+      _0x49a263 += "#loading-box{display: none;}";
+      _0x49a263 += "</style>";
+      $("body").append(_0x49a263).addClass("");
+    }
+    YKQ.danmu.send();
+    YKQ.danmu.list();
+    YKQ.def();
+    YKQ.video.try();
+    YKQ.dp.danmaku.opacity(1);
+  },
+  "def": function () {
+    console.log("播放器开启");
+    YKQ.stime = 0;
+    YKQ.headt = yzmck.get("headt");
+    YKQ.lastt = yzmck.get("lastt");
+    YKQ.last_tip = parseInt(YKQ.lastt) + 10;
+    YKQ.frists = yzmck.get("frists");
+    YKQ.lasts = yzmck.get("lasts");
+    YKQ.playtime = Number(YKQ.getCookie("time_" + config.url));
+    YKQ.ctime = YKQ.formatTime(YKQ.playtime);
+    YKQ.dp.on("loadedmetadata", function () {
+      YKQ.loadedmetadataHandler();
+    });
+    YKQ.dp.on("ended", function () {
+      YKQ.endedHandler();
+    });
+    YKQ.dp.on("pause", function () {
+      YKQ.MYad.pause.play(YKQ.ads.pause.link, YKQ.ads.pause.pic);
+    });
+    YKQ.dp.on("play", function () {
+      YKQ.MYad.pause.out();
+    });
+    YKQ.dp.on("timeupdate", function (_0x472a39) {
+      YKQ.timeupdateHandler();
+    });
+    YKQ.jump.def();
+  },
+  "video": {
+    "play": function () {
+      $("#link3").text("视频已准备就绪，即将为您播放");
+      setTimeout(function () {
+        YKQ.dp.play();
+        $("#my-loading", parent.document).remove();
+        YKQ.jump.head();
+      }, 0);
+    },
+    "next": function () {
+      top.location.href = up.mylink + config.next;
+    },
+    "try": function () {
+      up.trysee > 0 && config.group < config.group_x && config.group != "" && ($("#dmtext").attr({
+        "disabled": true,
+        "placeholder": "登陆后才能发弹幕yo(・ω・)"
+      }), setInterval(function () {
+        var _0x442b85 = up.trysee * 60,
+          _0x4a525f = YKQ.dp.video.currentTime;
+        _0x4a525f > _0x442b85 && (YKQ.dp.video.currentTime = 0, YKQ.dp.pause(), layer.confirm(up.trysee + "分钟试看已结束，请登录继续播放完整视频", {
+          "anim": 1,
+          "title": "温馨提示",
+          "btn": ["登录", "注册"],
+          "yes": function (_0x17d8cd, _0x567302) {
+            top.location.href = up.mylink + "/index.php/user/login.html";
+          },
+          "btn2": function (_0x462157, _0x3c09a3) {
+            top.location.href = up.mylink + "/index.php/user/reg.html";
+          }
+        }));
+      }, 1000));
+    },
+    "seek": function () {
+      YKQ.dp.seek(YKQ.playtime);
+    },
+    "end": function () {
+      layer.msg("播放结束啦=。=");
+    },
+    "con_play": function () {
+      if (!danmuon) YKQ.jump.head();else {
+        var _0x5a37ce = " <e>已播放至" + YKQ.ctime + "，继续上次播放？</e><d class=\"conplay-jump\">是 <i id=\"num\">" + YKQ.waittime + "</i>s</d><d class=\"conplaying\">否</d>";
+        $("#link3").html(_0x5a37ce);
+        var _0x144b0b = document.getElementById("num");
+        var _0x5ad62f = _0x144b0b.innerHTML;
+        var _0x319810 = null;
+        setTimeout(function () {
+          _0x319810 = setInterval(function () {
+            _0x5ad62f--;
+            _0x144b0b.innerHTML = _0x5ad62f;
+            _0x5ad62f == 0 && (clearInterval(_0x319810), YKQ.video.seek(), YKQ.dp.play(), $(".memory-play-wrap,#loading-box").remove());
+          }, 1000);
+        }, 1);
+      }
+      var _0x1c1db8 = "<div class=\"memory-play-wrap\"><div class=\"memory-play\"><span class=\"close\">×</span><span>上次看到 </span><span>" + YKQ.ctime + "</span><span class=\"play-jump\">跳转播放</span></div></div>";
+      $(".yzmplayer-cplayer").append(_0x1c1db8);
+      $("#my-loading", parent.document).remove();
+      YKQ.dp.play();
+      $(".close").on("click", function () {
+        $(".memory-play-wrap").remove();
+      });
+      setTimeout(function () {
+        $(".memory-play-wrap").remove();
+      }, 20000);
+      $(".conplaying").on("click", function () {
+        clearTimeout(_0x319810);
+        $("#loading-box").remove();
+        YKQ.dp.play();
+        YKQ.jump.head();
+      });
+      $(".conplay-jump,.play-jump").on("click", function () {
+        clearTimeout(_0x319810);
+        YKQ.video.seek();
+        $(".memory-play-wrap,#loading-box").remove();
+        YKQ.dp.play();
+      });
+    }
+  },
+  "jump": {
+    "def": function () {
+      h = ".yzmplayer-setting-jfrist label";
+      l = ".yzmplayer-setting-jlast label";
+      f = "#fristtime";
+      j = "#jumptime";
+      _0x51191d(h, "frists", YKQ.frists, "headt", YKQ.headt, f);
+      _0x51191d(l, "lasts", YKQ.lasts, "lastt", YKQ.lastt, j);
+      function _0x481266() {
+        layer.msg("请输入有效时间哟！");
+      }
+      function _0x2474f4() {
+        layer.msg("设置完成，将在刷新或下一集生效");
+      }
+      function _0x51191d(_0x283e77, _0x3c3cc5, _0x7be484, _0x508000, _0x473df1, _0x2dad10) {
+        $(_0x283e77).on("click", function () {
+          o = $(_0x2dad10).val();
+          o > 0 ? ($(_0x283e77).toggleClass("checked"), _0x2474f4(), _0x473df1 = $(_0x2dad10).val(), yzmck.set(_0x508000, _0x473df1)) : _0x481266();
+        });
+        _0x7be484 == 1 ? ($(_0x283e77).addClass("checked"), $(_0x283e77).click(function () {
+          o = $(_0x2dad10).val();
+          if (o > 0) yzmck.set(_0x3c3cc5, 0);else {
+            _0x481266();
+          }
+        })) : $(_0x283e77).click(function () {
+          {
+            o = $(_0x2dad10).val();
+            o > 0 ? yzmck.set(_0x3c3cc5, 1) : _0x481266();
+          }
+        });
+      }
+      $(f).attr({
+        "value": YKQ.headt
+      });
+      $(j).attr({
+        "value": YKQ.lastt
+      });
+      YKQ.jump.last();
+    },
+    "head": function () {
+      if (YKQ.stime > YKQ.playtime) YKQ.playtime = YKQ.stime;
+      if (YKQ.frists == 1) {
+        if (YKQ.headt > YKQ.playtime || YKQ.playtime == 0) YKQ.jump_f = 1;else {
+          YKQ.jump_f = 0;
+        }
+      }
+      YKQ.jump_f == 1 && (YKQ.dp.seek(YKQ.headt), YKQ.dp.notice("已为您跳过片头"));
+    },
+    "last": function () {
+      if (config.next != "") {
+        YKQ.lasts == 1 && setInterval(function () {
+          var _0x2a835e = YKQ.dp.video.duration - YKQ.dp.video.currentTime;
+          if (_0x2a835e < YKQ.last_tip) YKQ.dp.notice("即将为您跳过片尾");
+          YKQ.lastt > 0 && _0x2a835e < YKQ.lastt && (YKQ.setCookie("time_" + config.url, "", -1), YKQ.video.next());
+        }, 1000);
+      } else {
+        $(".icon-xj").remove();
+      }
+    },
+    "ad": function (_0x3558c3, _0x48baef) {}
+  },
+  "danmu": {
+    "send": function () {
+      g = $(".yzm-yzmplayer-send-icon");
+      d = $("#dmtext");
+      h = ".yzmplayer-comment-setting-";
+      $(h + "color input").on("click", function () {
+        r = $(this).attr("value");
+        setTimeout(function () {
+          d.css({
+            "color": r
+          });
+        }, 100);
+      });
+      $(h + "type input").on("click", function () {
+        t = $(this).attr("value");
+        setTimeout(function () {
+          d.attr("dmtype", t);
+        }, 100);
+      });
+      $(h + "font input").on("click", function () {
+        {
+          if (up.trysee > 0 && config.group == config.group_x) {
+            layer.msg("会员专属功能");
+            return;
+          }
+          t = $(this).attr("value");
+          setTimeout(function () {
+            d.attr("size", t);
+          }, 100);
+        }
+      });
+      g.on("click", function () {
+        {
+          a = document.getElementById("dmtext");
+          a = a.value;
+          b = d.attr("dmtype");
+          c = d.css("color");
+          z = d.attr("size");
+          if (up.trysee > 0 && config.group < config.group_x && config.group != "") {
+            layer.msg("登陆后才能发弹幕yo(・ω・)");
+            return;
+          }
+          for (var _0x331f8e = 0; _0x331f8e < up.pbgjz.length; _0x331f8e++) {
+            if (a.search(up.pbgjz[_0x331f8e]) != -1) {
+              {
+                layer.msg("请勿发送无意义内容，规范您的弹幕内容");
+                return;
+              }
+            }
+          }
+          if (a.length < 1) {
+            layer.msg("要输入弹幕内容啊喂！");
+            return;
+          }
+          var _0x1f4c4c = Date.parse(new Date()),
+            _0x33df73 = yzmck.get("dmsent", _0x1f4c4c);
+          if (_0x1f4c4c - _0x33df73 < config.sendtime * 1000) {
+            layer.msg("请勿频繁操作！发送弹幕需间隔" + config.sendtime + "秒~");
+            return;
+          }
+          d.val("");
+          YKQ.dp.danmaku.send({
+            "text": a,
+            "color": c,
+            "type": b,
+            "size": z
+          });
+          yzmck.set("dmsent", _0x1f4c4c);
+        }
+      });
+      function _0x3b372d() {
+        g.trigger("click");
+      }
+      d.keydown(function (_0x550732) {
+        _0x550732.keyCode == 13 && _0x3b372d();
+      });
+    },
+    "list": function () {
+      $(".yzmplayer-list-icon,.yzm-yzmplayer-send-icon").on("click", function () {
+        $(".list-show").empty();
+        $.ajax({
+          "url": config.api + "?ac=get&id=" + YKQ.id,
+          "success": function (_0x10944a) {
+            if (_0x10944a.code == 23) {
+              {
+                a = _0x10944a.danmuku;
+                b = _0x10944a.name;
+                c = _0x10944a.danum;
+                $(".danmuku-num").text(c);
+                $(a).each(function (_0x3038f0, _0x26090e) {
+                  l = "<d class=\"danmuku-list\" time=\"" + _0x26090e[0] + "\"><li>" + YKQ.formatTime(_0x26090e[0]) + "</li><li title=\"" + _0x26090e[4] + "\">" + _0x26090e[4] + "</li><li title=\"用户：" + _0x26090e[3] + "  IP地址：" + _0x26090e[5] + "\">" + _0x26090e[6] + "</li><li class=\"report\" onclick=\"YKQ.danmu.report('" + _0x26090e[5] + "','" + b + "','" + _0x26090e[4] + "','" + _0x26090e[3] + "')\">举报</li></d>";
+                  $(".list-show").append(l);
+                });
+              }
+            }
+            $(".danmuku-list").on("dblclick", function () {
+              YKQ.dp.seek($(this).attr("time"));
+            });
+          }
+        });
+      });
+      var _0x5f26c6 = "<div class=\"dmrules\"><a target=\"_blank\" href=\"" + config.dmrule + "\">弹幕礼仪 </a></div>";
+      $("div.yzmplayer-comment-box:last").append(_0x5f26c6);
+      $(".yzmplayer-watching-number").text(up.usernum);
+      $(".yzmplayer-info-panel-item-title-amount .yzmplayer-info-panel-item-title").html("违规词");
+      for (var _0x49a61f = 0; _0x49a61f < up.pbgjz.length; _0x49a61f++) {
+        var _0x412c4c = "<e>" + up.pbgjz[_0x49a61f] + "</e>";
+        $("#vod-title").append(_0x412c4c);
+      }
+      _0x5ad158(".yzmplayer-list-icon", ".yzmplayer-danmu", "show");
+      function _0x5ad158(_0x28deac, _0x113a5e, _0x444e80, _0x295b29) {
+        $(_0x28deac).click(function () {
+          $(_0x113a5e).toggleClass(_0x444e80);
+          $(_0x295b29).remove();
+        });
+      }
+    },
+    "report": function (_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04) {
+      layer.confirm("" + _0x70b58f + "<!--br><br><span style=\"color:#333\">请选择需要举报的类型</span-->", {
+        "anim": 1,
+        "title": "举报弹幕",
+        "btn": ["违法违禁", "色情低俗", "恶意刷屏", "赌博诈骗", "人身攻击", "侵犯隐私", "垃圾广告", "剧透", "引战"],
+        "btn3": function (_0x56fb2b, _0x2aa417) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "恶意刷屏");
+        },
+        "btn4": function (_0x2087c2, _0x209b3b) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "赌博诈骗");
+        },
+        "btn5": function (_0x57604f, _0x14c102) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "人身攻击");
+        },
+        "btn6": function (_0x2fe74b, _0x475535) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "侵犯隐私");
+        },
+        "btn7": function (_0xe9da1d, _0x10f2a4) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "垃圾广告");
+        },
+        "btn8": function (_0x30eec5, _0x335eb5) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "剧透");
+        },
+        "btn9": function (_0x50cdf9, _0x3cdec6) {
+          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "引战");
+        }
+      }, function (_0x495256, _0x2fe589) {
+        YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "违法违禁");
+      }, function (_0x1d9a15) {
+        YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "色情低俗");
+      });
+    },
+    "post_r": function (_0x4368dd, _0x29a9ec, _0x3106c2, _0x2d24d1, _0x2dabb2) {
+      $.ajax({
+        "type": "get",
+        "url": config.api + "?ac=report&cid=" + _0x2d24d1 + "&user=" + _0x4368dd + "&type=" + _0x2dabb2 + "&title=" + _0x29a9ec + "&text=" + _0x3106c2,
+        "cache": false,
+        "dataType": "json",
+        "beforeSend": function () {},
+        "success": function (_0x5bcd9a) {
+          layer.msg("举报成功！感谢您为守护弹幕作出了贡献");
+        },
+        "error": function (_0x3f854b) {
+          {
+            var _0x1add7b = "服务故障 or 网络异常，稍后再试6！";
+            layer.msg(_0x1add7b);
+          }
+        }
+      });
+    }
+  },
+  "setCookie": function (_0x4e2ded, _0x1d336a, _0x84e661) {
+    var _0x5641b7 = new Date();
+    _0x5641b7.setHours(_0x5641b7.getHours() + _0x84e661);
+    window.sessionStorage ? window.sessionStorage.setItem("playtime", _0x4e2ded + "=" + escape(_0x1d336a) + (_0x84e661 === null ? "" : ";expires=" + _0x5641b7.toGMTString())) : document.cookie = _0x4e2ded + "=" + escape(_0x1d336a) + (_0x84e661 === null ? "" : ";expires=" + _0x5641b7.toGMTString());
+  },
+  "getCookie": function (_0x59086a) {
+    if (window.sessionStorage) {
+      {
+        var _0x1fdb09 = window.sessionStorage.getItem("playtime");
+        if (_0x1fdb09 && _0x1fdb09.length > 0) {
+          c_start = _0x1fdb09.indexOf(_0x59086a + "=");
+          if (c_start !== -1) {
+            c_start = c_start + _0x59086a.length + 1;
+            c_end = _0x1fdb09.indexOf(";", c_start);
+            c_end === -1 && (c_end = _0x1fdb09.length);
+            return unescape(_0x1fdb09.substring(c_start, c_end));
+          }
+        }
+      }
+    } else {
+      {
+        if (document.cookie.length > 0) {
+          c_start = document.cookie.indexOf(_0x59086a + "=");
+          if (c_start !== -1) {
+            c_start = c_start + _0x59086a.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            c_end === -1 && (c_end = document.cookie.length);
+            return unescape(document.cookie.substring(c_start, c_end));
+          }
+        }
+      }
+    }
+    return "";
+  },
+  "formatTime": function (_0x46dcf3) {
+    return [parseInt(_0x46dcf3 / 60 / 60), parseInt(_0x46dcf3 / 60 % 60), parseInt(_0x46dcf3 % 60)].join(":").replace(/\b(\d)\b/g, "0$1");
+  },
+  "loadedmetadataHandler": function () {
+    YKQ.playtime > 0 && YKQ.dp.video.currentTime < YKQ.playtime ? setTimeout(function () {
+      YKQ.video.con_play();
+    }, 1000) : setTimeout(function () {
+      !danmuon ? YKQ.jump.head() : (YKQ.dp.notice("视频已准备就绪，即将为您播放"), $("#my-loading", parent.document).remove(), YKQ.video.play());
+    }, 0);
+    YKQ.dp.on("timeupdate", function () {
+      YKQ.timeupdateHandler();
+    });
+  },
+  "timeupdateHandler": function () {
+    YKQ.setCookie("time_" + config.url, YKQ.dp.video.currentTime, 24);
+  },
+  "endedHandler": function () {
+    YKQ.setCookie("time_" + config.url, "", -1);
+    config.next != "" ? (YKQ.dp.notice("5s后,将自动为您播放下一集"), setTimeout(function () {
+      YKQ.video.next();
+    }, 5000)) : (YKQ.dp.notice("视频播放已结束"), setTimeout(function () {
+      YKQ.video.end();
+    }, 2000));
+  },
+  "player": {
+    "play": function (_0x49fa2b) {
+      $("body").addClass("danmu-off");
+      YKQ.dp = new yzmplayer({
+        "autoplay": true,
+        "element": document.getElementById("player"),
+        "theme": config.color,
+        "logo": config.logo,
+        "video": {
+          "url": _0x49fa2b,
+          "pic": config.pic,
+          "type": "auto"
+        }
+      });
+      var _0x262e27 = "<style type=\"text/css\">";
+      _0x262e27 += "#loading-box{display: none;}";
+      _0x262e27 += "</style>";
+      $("body").append(_0x262e27).addClass("");
+      YKQ.def();
+    },
+    "adplay": function (_0x2144d0) {
+      $("body").addClass("danmu-off");
+      YKQ.ad = new yzmplayer({
+        "autoplay": true,
+        "element": document.getElementById("ADplayer"),
+        "theme": config.color,
+        "logo": config.logo,
+        "video": {
+          "url": _0x2144d0,
+          "pic": config.pic,
+          "type": "auto"
+        }
+      });
+      $(".yzmplayer-controller,.yzmplayer-cplayer,.yzmplayer-logo,#loading-box,.yzmplayer-controller-mask").remove();
+      $(".yzmplayer-mask").show();
+      YKQ.ad.on("timeupdate", function () {
+        {
+          if (YKQ.ad.video.currentTime > YKQ.ad.video.duration - 0.1) {
+            $("body").removeClass("danmu-off");
+            YKQ.ad.destroy();
+            $("#ADplayer").remove();
+            $("#ADtip").remove();
+            YKQ.play(config.url);
+          }
+        }
+      });
+    },
+    "dmplay": function (_0x5d932a) {
+      YKQ.dmid();
+      YKQ.dp = new yzmplayer({
+        "autoplay": true,
+        "element": document.getElementById("player"),
+        "theme": config.color,
+        "logo": config.logo,
+        "video": {
+          "url": _0x5d932a,
+          "pic": config.pic,
+          "type": "auto"
+        },
+        "danmaku": {
+          "id": YKQ.id,
+          "api": config.api + "?ac=dm",
+          "user": config.user
+        }
+      });
+      YKQ.load();
+    },
+    "bdplay": function (_0x239dcc) {
+      YKQ.dmid();
+      YKQ.dp = new yzmplayer({
+        "autoplay": true,
+        "element": document.getElementById("player"),
+        "theme": config.color,
+        "logo": config.logo,
+        "video": {
+          "url": _0x239dcc,
+          "pic": config.pic,
+          "type": "auto"
+        },
+        "danmaku": {
+          "id": YKQ.id,
+          "api": config.api + "?ac=dm",
+          "user": config.user,
+          "addition": [config.api + "bilibili/?av=" + config.av]
+        }
+      });
+      YKQ.load();
+    }
+  },
+  "MYad": {
+    "vod": function (_0x1645a4, _0x5a99d1) {
+      $("#ADtip").html("<a id=\"link\" href=\"" + _0x5a99d1 + "\" target=\"_blank\">查看详情</a>");
+      $("#ADplayer").click(function () {
+        document.getElementById("link").click();
+      });
+      YKQ.player.adplay(_0x1645a4);
+    },
+    "pic": function (_0x3d5801, _0x1877ea, _0x145e55) {
+      $("#ADtip").html("<a id=\"link\" href=\"" + _0x3d5801 + "\" target=\"_blank\">广告 <e id=\"time_ad\">" + _0x1877ea + "</e></a><img src=\"" + _0x145e55 + "\">");
+      $("#ADtip").click(function () {
+        document.getElementById("link").click();
+      });
+      var _0xc2c970 = document.getElementById("time_ad"),
+        _0x3299ec = _0xc2c970.innerHTML,
+        _0x433bcc = null;
+      setTimeout(function () {
+        _0x433bcc = setInterval(function () {
+          _0x3299ec--;
+          _0xc2c970.innerHTML = _0x3299ec;
+          if (_0x3299ec == 0) {
+            clearInterval(_0x433bcc);
+            YKQ.play(config.url);
+            $("#ADtip").remove();
+          }
+        }, 1000);
+      }, 1);
+    },
+    "pause": {
+      "play": function (_0x4f4acd, _0x1680c0) {
+        if (YKQ.ads.pause.state == "on") {
+          {
+            var _0x1272c3 = "<div id=\"player_pause\"><div class=\"tip\">广告</div><a href=\"" + _0x4f4acd + "\" target=\"_blank\"><img src=\"" + _0x1680c0 + "\"></a></div>";
+            $("#player").before(_0x1272c3);
+          }
+        }
+      },
+      "out": function () {
+        $("#player_pause").remove();
+      }
+    }
   }
-  function _0xe7eaf(n, t, r, e, o, u) {
-    return _0xe0df2f((u = _0xe0df2f(_0xe0df2f(t, n), _0xe0df2f(e, u))) << o | u >>> 32 - o, r);
+};
+function rc4(_0x2262fd, _0x112647, _0x1bd18b) {
+  var _0x29a4a9 = _0x112647 || "bigon",
+    _0x409395 = "",
+    _0x112647 = [],
+    _0x3e4509 = [],
+    _0x1bbf36 = _0x29a4a9.length;
+  if (_0x1bd18b == 1) {
+    var _0x2262fd = atob(_0x2262fd);
+  } else {
+    var _0x2262fd = encodeURIComponent(_0x2262fd);
   }
-  function _0xa4d7e(n, t, r, e, o, u, c) {
-    return _0xe7eaf(t & r | ~t & e, n, t, o, u, c);
+  var _0x143495 = _0x2262fd.length;
+  for (i = 0; i < 256; i++) {
+    _0x112647[i] = _0x29a4a9[i % _0x1bbf36].charCodeAt();
+    _0x3e4509[i] = i;
   }
-  function _0x4gc4cg(n, t, r, e, o, u, c) {
-    return _0xe7eaf(t & e | r & ~e, n, t, o, u, c);
+  for (j = i = 0; i < 256; i++) {
+    j = (j + _0x3e4509[i] + _0x112647[i]) % 256;
+    tmp = _0x3e4509[i];
+    _0x3e4509[i] = _0x3e4509[j];
+    _0x3e4509[j] = tmp;
   }
-  function _0x32d(n, t, r, e, o, u, c) {
-    return _0xe7eaf(t ^ r ^ e, n, t, o, u, c);
+  for (a = j = i = 0; i < _0x143495; i++) {
+    a = (a + 1) % 256;
+    j = (j + _0x3e4509[a]) % 256;
+    tmp = _0x3e4509[a];
+    _0x3e4509[a] = _0x3e4509[j];
+    _0x3e4509[j] = tmp;
+    k = _0x3e4509[(_0x3e4509[a] + _0x3e4509[j]) % 256];
+    _0x409395 += String.fromCharCode(_0x2262fd[i].charCodeAt() ^ k);
   }
-  function _0xf9590f(n, t, r, e, o, u, c) {
-    return _0xe7eaf(r ^ (t | ~e), n, t, o, u, c);
-  }
-  function c(n, t) {
-    var r, e, o, u;
-    n[t >> 5] |= 128 << t % 32, n[14 + (t + 64 >>> 9 << 4)] = t;
-    for (var c = 1732584193, f = -271733879, i = -1732584194, a = 271733878, h = 0; h < n['\u006C\u0065\u006E\u0067\u0074\u0068']; h += 16) c = _0xa4d7e(r = c, e = f, o = i, u = a, n[h], 7, -680876936), a = _0xa4d7e(a, c, f, i, n[h + 1], 12, -389564586), i = _0xa4d7e(i, a, c, f, n[h + 2], 17, 606105819), f = _0xa4d7e(f, i, a, c, n[h + 3], 22, -1044525330), c = _0xa4d7e(c, f, i, a, n[h + 4], 7, -176418897), a = _0xa4d7e(a, c, f, i, n[h + 5], 12, 1200080426), i = _0xa4d7e(i, a, c, f, n[h + 6], 17, -1473231341), f = _0xa4d7e(f, i, a, c, n[h + 7], 22, -45705983), c = _0xa4d7e(c, f, i, a, n[h + 8], 7, 1770035416), a = _0xa4d7e(a, c, f, i, n[h + 9], 12, -1958414417), i = _0xa4d7e(i, a, c, f, n[h + 10], 17, -42063), f = _0xa4d7e(f, i, a, c, n[h + 11], 22, -1990404162), c = _0xa4d7e(c, f, i, a, n[h + 12], 7, 1804603682), a = _0xa4d7e(a, c, f, i, n[h + 13], 12, -40341101), i = _0xa4d7e(i, a, c, f, n[h + 14], 17, -1502002290), c = _0x4gc4cg(c, f = _0xa4d7e(f, i, a, c, n[h + 15], 22, 1236535329), i, a, n[h + 1], 5, -165796510), a = _0x4gc4cg(a, c, f, i, n[h + 6], 9, -1069501632), i = _0x4gc4cg(i, a, c, f, n[h + 11], 14, 643717713), f = _0x4gc4cg(f, i, a, c, n[h], 20, -373897302), c = _0x4gc4cg(c, f, i, a, n[h + 5], 5, -701558691), a = _0x4gc4cg(a, c, f, i, n[h + 10], 9, 38016083), i = _0x4gc4cg(i, a, c, f, n[h + 15], 14, -660478335), f = _0x4gc4cg(f, i, a, c, n[h + 4], 20, -405537848), c = _0x4gc4cg(c, f, i, a, n[h + 9], 5, 568446438), a = _0x4gc4cg(a, c, f, i, n[h + 14], 9, -1019803690), i = _0x4gc4cg(i, a, c, f, n[h + 3], 14, -187363961), f = _0x4gc4cg(f, i, a, c, n[h + 8], 20, 1163531501), c = _0x4gc4cg(c, f, i, a, n[h + 13], 5, -1444681467), a = _0x4gc4cg(a, c, f, i, n[h + 2], 9, -51403784), i = _0x4gc4cg(i, a, c, f, n[h + 7], 14, 1735328473), c = _0x32d(c, f = _0x4gc4cg(f, i, a, c, n[h + 12], 20, -1926607734), i, a, n[h + 5], 4, -378558), a = _0x32d(a, c, f, i, n[h + 8], 11, -2022574463), i = _0x32d(i, a, c, f, n[h + 11], 16, 1839030562), f = _0x32d(f, i, a, c, n[h + 14], 23, -35309556), c = _0x32d(c, f, i, a, n[h + 1], 4, -1530992060), a = _0x32d(a, c, f, i, n[h + 4], 11, 1272893353), i = _0x32d(i, a, c, f, n[h + 7], 16, -155497632), f = _0x32d(f, i, a, c, n[h + 10], 23, -1094730640), c = _0x32d(c, f, i, a, n[h + 13], 4, 681279174), a = _0x32d(a, c, f, i, n[h], 11, -358537222), i = _0x32d(i, a, c, f, n[h + 3], 16, -722521979), f = _0x32d(f, i, a, c, n[h + 6], 23, 76029189), c = _0x32d(c, f, i, a, n[h + 9], 4, -640364487), a = _0x32d(a, c, f, i, n[h + 12], 11, -421815835), i = _0x32d(i, a, c, f, n[h + 15], 16, 530742520), c = _0xf9590f(c, f = _0x32d(f, i, a, c, n[h + 2], 23, -995338651), i, a, n[h], 6, -198630844), a = _0xf9590f(a, c, f, i, n[h + 7], 10, 1126891415), i = _0xf9590f(i, a, c, f, n[h + 14], 15, -1416354905), f = _0xf9590f(f, i, a, c, n[h + 5], 21, -57434055), c = _0xf9590f(c, f, i, a, n[h + 12], 6, 1700485571), a = _0xf9590f(a, c, f, i, n[h + 3], 10, -1894986606), i = _0xf9590f(i, a, c, f, n[h + 10], 15, -1051523), f = _0xf9590f(f, i, a, c, n[h + 1], 21, -2054922799), c = _0xf9590f(c, f, i, a, n[h + 8], 6, 1873313359), a = _0xf9590f(a, c, f, i, n[h + 15], 10, -30611744), i = _0xf9590f(i, a, c, f, n[h + 6], 15, -1560198380), f = _0xf9590f(f, i, a, c, n[h + 13], 21, 1309151649), c = _0xf9590f(c, f, i, a, n[h + 4], 6, -145523070), a = _0xf9590f(a, c, f, i, n[h + 11], 10, -1120210379), i = _0xf9590f(i, a, c, f, n[h + 2], 15, 718787259), f = _0xf9590f(f, i, a, c, n[h + 9], 21, -343485551), c = _0xe0df2f(c, r), f = _0xe0df2f(f, e), i = _0xe0df2f(i, o), a = _0xe0df2f(a, u);
-    return [c, f, i, a];
-  }
-  function _0x603bca(n) {
-    for (var t = "", r = 32 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t += String['\u0066\u0072\u006F\u006D\u0043\u0068\u0061\u0072\u0043\u006F\u0064\u0065'](n[e >> 5] >>> e % 32 & 255);
-    return t;
-  }
-  function _0xbg951d(n) {
-    var _0xdb4a3c;
-    var t = [];
-    _0xdb4a3c = 11;
-    for (t[(n['\u006C\u0065\u006E\u0067\u0074\u0068'] >> 2) - 1] = undefined, e = 0; e < t['\u006C\u0065\u006E\u0067\u0074\u0068']; e += 1) t[e] = 0;
-    for (var r = 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t[e >> 5] |= (255 & n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](e / 8)) << e % 32;
-    return t;
-  }
-  function e(n) {
-    for (var t, r = "\u0030\u0031\u0032\u0033\u0034\u0035\u0036\u0037\u0038\u0039\u0061\u0062\u0063\u0064\u0065\u0066", e = "", o = 0; o < n['\u006C\u0065\u006E\u0067\u0074\u0068']; o += 1) t = n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](o), e += r['\u0063\u0068\u0061\u0072\u0041\u0074'](t >>> 4 & 15) + r['\u0063\u0068\u0061\u0072\u0041\u0074'](15 & t);
-    return e;
-  }
-  function _0x2b3d4c(n) {
-    return unescape(encodeURIComponent(n));
-  }
-  function _0x92265f(n) {
-    return _0x603bca(c(_0xbg951d(n = _0x2b3d4c(n)), 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068']));
-  }
-  function _0xbeb51g(n, t) {
-    return function (n, t) {
-      var r,
-        e = _0xbg951d(n),
-        o = [],
-        u = [];
-      for (o[15] = u[15] = undefined, 16 < e['\u006C\u0065\u006E\u0067\u0074\u0068'] && (e = c(e, 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'])), r = 0; r < 16; r += 1) o[r] = 909522486 ^ e[r], u[r] = 1549556828 ^ e[r];
-      return t = c(o['\u0063\u006F\u006E\u0063\u0061\u0074'](_0xbg951d(t)), 512 + 8 * t['\u006C\u0065\u006E\u0067\u0074\u0068']), _0x603bca(c(u['\u0063\u006F\u006E\u0063\u0061\u0074'](t), 640));
-    }(_0x2b3d4c(n), _0x2b3d4c(t));
-  }
-  function t(n, t, r) {
-    return t ? r ? _0xbeb51g(t, n) : e(_0xbeb51g(t, n)) : r ? _0x92265f(n) : e(_0x92265f(n));
-  }
-  "\u0066\u0075\u006E\u0063\u0074\u0069\u006F\u006E" == typeof define && define['\u0061\u006D\u0064'] ? define(function () {
-    return t;
-  }) : "tcejbo".split("").reverse().join("") == typeof module && module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] ? module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] = t : n['\u006D\u0064\u0035'] = t;
-}(this);
-function crc32(id) {
-  if (!(typeof mkPlayer !== "\u0075\u006E\u0064\u0065\u0066\u0069\u006E\u0065\u0064" && mkPlayer !== null && "\u0076\u0065\u0072\u0073\u0069\u006F\u006E" in mkPlayer)) {
-    return '';
-  }
-  id = String(id);
-  var _0x4fcbc = 6;
-  var _0x2_0x61a = "zyx.oidutsdg.cisum".split("").reverse().join("");
-  _0x4fcbc = 4;
-  var _0x_0xed9 = 1;
-  var _0xe7f = mkPlayer['\u0076\u0065\u0072\u0073\u0069\u006F\u006E'];
-  _0x_0xed9 = 16;
-  var _0x8074e = _0xe7f['\u0073\u0070\u006C\u0069\u0074']("\u002E")['\u006D\u0061\u0070'](function (part) {
-    return part['\u006C\u0065\u006E\u0067\u0074\u0068'] === 1 ? "\u0030" + part : part;
-  })['\u006A\u006F\u0069\u006E']('');
-  var _0x13bgff;
-  var _0xbb3e = _0x2_0x61a + "\u007C" + _0x8074e + "\u007C" + id;
-  _0x13bgff = 12;
-  var _0x8d_0x351 = md5(_0xbb3e);
-  var _0xf2bf9c = 7;
-  var _0xee_0x312 = _0x8d_0x351['\u0073\u006C\u0069\u0063\u0065'](-8)['\u0074\u006F\u0055\u0070\u0070\u0065\u0072\u0043\u0061\u0073\u0065']();
-  _0xf2bf9c = 11;
-  return _0xee_0x312;
+  if (_0x1bd18b == 1) {
+    return decodeURIComponent(_0x409395);
+  } else return btoa(_0x409395);
 }
