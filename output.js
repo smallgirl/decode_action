@@ -75,6 +75,7 @@ function _0x2a32f8() {
     "referer": Ref,
     "time": Time
   };
+   console.log(_0x19e2f0);
   let _0x526f36 = hxm_aesencrypt(JSON.stringify(_0x19e2f0)).toUpperCase();
   let _0x4feada = {
     "Params": _0x526f36
@@ -108,7 +109,9 @@ function _0x2a32f8() {
             {
               let _0x5a5876 = _0x5f4e66.Code + _0x5f4e66.Appkey + _0x5f4e66.Version;
               let _0x13467c = _0x5f0448(_0x5f4e66.Data, _0x1f5d82(_0x5a5876));
+               console.log(_0x13467c);
               _0x13467c = hxm_aesdecrypt(_0x13467c);
+               console.log(_0x13467c);
               info = JSON.parse(_0x13467c);
               let _0x3030bf = info.url;
               info.url = decodeURIComponent(_0x3030bf);
