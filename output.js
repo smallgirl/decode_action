@@ -1,228 +1,127 @@
-//Sun Sep 21 2025 03:05:15 GMT+0000 (Coordinated Universal Time)
+//Wed Nov 05 2025 21:08:22 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-const _0x3fb21a = function () {
-  let _0x318c26 = true;
-  return function (_0x5299c6, _0x143695) {
-    const _0x4461c4 = _0x318c26 ? function () {
-      if (_0x143695) {
-        const _0x1dc632 = _0x143695.apply(_0x5299c6, arguments);
-        _0x143695 = null;
-        return _0x1dc632;
-      }
-    } : function () {};
-    _0x318c26 = false;
-    return _0x4461c4;
-  };
-}();
-const _0x19b6d7 = _0x3fb21a(this, function () {
-  let _0x5c296d;
+!function (n) {
+  "use strict";
+
+  function _0x116c6g(n, t) {
+    var _0x7eafe = 11;
+    var r = (65535 & n) + (65535 & t);
+    _0x7eafe = 12;
+    return (n >> 16) + (t >> 16) + (r >> 16) << 16 | 65535 & r;
+  }
+  function _0x56ac7c(n, t, r, e, o, u) {
+    return _0x116c6g((u = _0x116c6g(_0x116c6g(t, n), _0x116c6g(e, u))) << o | u >>> 32 - o, r);
+  }
+  function _0x1c64f(n, t, r, e, o, u, c) {
+    return _0x56ac7c(t & r | ~t & e, n, t, o, u, c);
+  }
+  function _0xfb_0x5f5(n, t, r, e, o, u, c) {
+    return _0x56ac7c(t & e | r & ~e, n, t, o, u, c);
+  }
+  function _0xd_0x5e9(n, t, r, e, o, u, c) {
+    return _0x56ac7c(t ^ r ^ e, n, t, o, u, c);
+  }
+  function _0xge8d(n, t, r, e, o, u, c) {
+    return _0x56ac7c(r ^ (t | ~e), n, t, o, u, c);
+  }
+  function c(n, t) {
+    var r, e, o, u;
+    n[t >> 5] |= 128 << t % 32, n[14 + (t + 64 >>> 9 << 4)] = t;
+    for (var c = 1732584193, f = -271733879, i = -1732584194, a = 271733878, h = 0; h < n['\u006C\u0065\u006E\u0067\u0074\u0068']; h += 16) c = _0x1c64f(r = c, e = f, o = i, u = a, n[h], 7, -680876936), a = _0x1c64f(a, c, f, i, n[h + 1], 12, -389564586), i = _0x1c64f(i, a, c, f, n[h + 2], 17, 606105819), f = _0x1c64f(f, i, a, c, n[h + 3], 22, -1044525330), c = _0x1c64f(c, f, i, a, n[h + 4], 7, -176418897), a = _0x1c64f(a, c, f, i, n[h + 5], 12, 1200080426), i = _0x1c64f(i, a, c, f, n[h + 6], 17, -1473231341), f = _0x1c64f(f, i, a, c, n[h + 7], 22, -45705983), c = _0x1c64f(c, f, i, a, n[h + 8], 7, 1770035416), a = _0x1c64f(a, c, f, i, n[h + 9], 12, -1958414417), i = _0x1c64f(i, a, c, f, n[h + 10], 17, -42063), f = _0x1c64f(f, i, a, c, n[h + 11], 22, -1990404162), c = _0x1c64f(c, f, i, a, n[h + 12], 7, 1804603682), a = _0x1c64f(a, c, f, i, n[h + 13], 12, -40341101), i = _0x1c64f(i, a, c, f, n[h + 14], 17, -1502002290), c = _0xfb_0x5f5(c, f = _0x1c64f(f, i, a, c, n[h + 15], 22, 1236535329), i, a, n[h + 1], 5, -165796510), a = _0xfb_0x5f5(a, c, f, i, n[h + 6], 9, -1069501632), i = _0xfb_0x5f5(i, a, c, f, n[h + 11], 14, 643717713), f = _0xfb_0x5f5(f, i, a, c, n[h], 20, -373897302), c = _0xfb_0x5f5(c, f, i, a, n[h + 5], 5, -701558691), a = _0xfb_0x5f5(a, c, f, i, n[h + 10], 9, 38016083), i = _0xfb_0x5f5(i, a, c, f, n[h + 15], 14, -660478335), f = _0xfb_0x5f5(f, i, a, c, n[h + 4], 20, -405537848), c = _0xfb_0x5f5(c, f, i, a, n[h + 9], 5, 568446438), a = _0xfb_0x5f5(a, c, f, i, n[h + 14], 9, -1019803690), i = _0xfb_0x5f5(i, a, c, f, n[h + 3], 14, -187363961), f = _0xfb_0x5f5(f, i, a, c, n[h + 8], 20, 1163531501), c = _0xfb_0x5f5(c, f, i, a, n[h + 13], 5, -1444681467), a = _0xfb_0x5f5(a, c, f, i, n[h + 2], 9, -51403784), i = _0xfb_0x5f5(i, a, c, f, n[h + 7], 14, 1735328473), c = _0xd_0x5e9(c, f = _0xfb_0x5f5(f, i, a, c, n[h + 12], 20, -1926607734), i, a, n[h + 5], 4, -378558), a = _0xd_0x5e9(a, c, f, i, n[h + 8], 11, -2022574463), i = _0xd_0x5e9(i, a, c, f, n[h + 11], 16, 1839030562), f = _0xd_0x5e9(f, i, a, c, n[h + 14], 23, -35309556), c = _0xd_0x5e9(c, f, i, a, n[h + 1], 4, -1530992060), a = _0xd_0x5e9(a, c, f, i, n[h + 4], 11, 1272893353), i = _0xd_0x5e9(i, a, c, f, n[h + 7], 16, -155497632), f = _0xd_0x5e9(f, i, a, c, n[h + 10], 23, -1094730640), c = _0xd_0x5e9(c, f, i, a, n[h + 13], 4, 681279174), a = _0xd_0x5e9(a, c, f, i, n[h], 11, -358537222), i = _0xd_0x5e9(i, a, c, f, n[h + 3], 16, -722521979), f = _0xd_0x5e9(f, i, a, c, n[h + 6], 23, 76029189), c = _0xd_0x5e9(c, f, i, a, n[h + 9], 4, -640364487), a = _0xd_0x5e9(a, c, f, i, n[h + 12], 11, -421815835), i = _0xd_0x5e9(i, a, c, f, n[h + 15], 16, 530742520), c = _0xge8d(c, f = _0xd_0x5e9(f, i, a, c, n[h + 2], 23, -995338651), i, a, n[h], 6, -198630844), a = _0xge8d(a, c, f, i, n[h + 7], 10, 1126891415), i = _0xge8d(i, a, c, f, n[h + 14], 15, -1416354905), f = _0xge8d(f, i, a, c, n[h + 5], 21, -57434055), c = _0xge8d(c, f, i, a, n[h + 12], 6, 1700485571), a = _0xge8d(a, c, f, i, n[h + 3], 10, -1894986606), i = _0xge8d(i, a, c, f, n[h + 10], 15, -1051523), f = _0xge8d(f, i, a, c, n[h + 1], 21, -2054922799), c = _0xge8d(c, f, i, a, n[h + 8], 6, 1873313359), a = _0xge8d(a, c, f, i, n[h + 15], 10, -30611744), i = _0xge8d(i, a, c, f, n[h + 6], 15, -1560198380), f = _0xge8d(f, i, a, c, n[h + 13], 21, 1309151649), c = _0xge8d(c, f, i, a, n[h + 4], 6, -145523070), a = _0xge8d(a, c, f, i, n[h + 11], 10, -1120210379), i = _0xge8d(i, a, c, f, n[h + 2], 15, 718787259), f = _0xge8d(f, i, a, c, n[h + 9], 21, -343485551), c = _0x116c6g(c, r), f = _0x116c6g(f, e), i = _0x116c6g(i, o), a = _0x116c6g(a, u);
+    return [c, f, i, a];
+  }
+  function _0x77f8c(n) {
+    for (var t = "", r = 32 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t += String['\u0066\u0072\u006F\u006D\u0043\u0068\u0061\u0072\u0043\u006F\u0064\u0065'](n[e >> 5] >>> e % 32 & 255);
+    return t;
+  }
+  function _0x4cbe4f(n) {
+    var _0x_0x9c8;
+    var t = [];
+    _0x_0x9c8 = 7;
+    for (t[(n['\u006C\u0065\u006E\u0067\u0074\u0068'] >> 2) - 1] = undefined, e = 0; e < t['\u006C\u0065\u006E\u0067\u0074\u0068']; e += 1) t[e] = 0;
+    for (var r = 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t[e >> 5] |= (255 & n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](e / 8)) << e % 32;
+    return t;
+  }
+  function e(n) {
+    for (var t, r = "\u0030\u0031\u0032\u0033\u0034\u0035\u0036\u0037\u0038\u0039\u0061\u0062\u0063\u0064\u0065\u0066", e = "", o = 0; o < n['\u006C\u0065\u006E\u0067\u0074\u0068']; o += 1) t = n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](o), e += r['\u0063\u0068\u0061\u0072\u0041\u0074'](t >>> 4 & 15) + r['\u0063\u0068\u0061\u0072\u0041\u0074'](15 & t);
+    return e;
+  }
+  function _0xddd4fg(n) {
+    return unescape(encodeURIComponent(n));
+  }
+  function _0x04461d(n) {
+    return _0x77f8c(c(_0x4cbe4f(n = _0xddd4fg(n)), 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068']));
+  }
+  function _0xa7cfg(n, t) {
+    return function (n, t) {
+      var r,
+        e = _0x4cbe4f(n),
+        o = [],
+        u = [];
+      for (o[15] = u[15] = undefined, 16 < e['\u006C\u0065\u006E\u0067\u0074\u0068'] && (e = c(e, 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'])), r = 0; r < 16; r += 1) o[r] = 909522486 ^ e[r], u[r] = 1549556828 ^ e[r];
+      return t = c(o['\u0063\u006F\u006E\u0063\u0061\u0074'](_0x4cbe4f(t)), 512 + 8 * t['\u006C\u0065\u006E\u0067\u0074\u0068']), _0x77f8c(c(u['\u0063\u006F\u006E\u0063\u0061\u0074'](t), 640));
+    }(_0xddd4fg(n), _0xddd4fg(t));
+  }
+  function t(n, t, r) {
+    return t ? r ? _0xa7cfg(t, n) : e(_0xa7cfg(t, n)) : r ? _0x04461d(n) : e(_0x04461d(n));
+  }
+  "\u0066\u0075\u006E\u0063\u0074\u0069\u006F\u006E" == typeof define && define['\u0061\u006D\u0064'] ? define(function () {
+    return t;
+  }) : "\u006F\u0062\u006A\u0065\u0063\u0074" == typeof module && module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] ? module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] = t : n['\u006D\u0064\u0035'] = t;
+}(this);
+function gt() {
+  var _0x4e7b = 7;
+  var _0x3e27e = "emit/noisiver/moc.ayalamix.www//:sptth".split("").reverse().join("");
+  _0x4e7b = 0;
+  var _0xb5aeac;
+  var _0x4a04e = new XMLHttpRequest();
+  _0xb5aeac = 2;
+  var _0x3_0x828 = null;
+  var _0xe863e = false;
+  var _0x7c_0x1a1 = setTimeout(function () {
+    _0xe863e = true;
+    if (_0x4a04e['\u0072\u0065\u0061\u0064\u0079\u0053\u0074\u0061\u0074\u0065'] !== 4) {
+      _0x4a04e['\u0061\u0062\u006F\u0072\u0074']();
+    }
+  }, 2000);
   try {
-    const _0x57f28e = Function("return (function() {}.constructor(\"return this\")( ));");
-    _0x5c296d = _0x57f28e();
-  } catch (_0x1ecfbe) {
-    _0x5c296d = window;
-  }
-  const _0x1c1dc9 = new RegExp("[BCSAtsSYRAySGSIHWmhXBAuHOGQHuBBHMYRMLfXGOAuNMLpfQDARypqBqEFgNIlquQGRl]", "g");
-  const _0x254e20 = "www.kanBCxSizaAit.sScn;wwwYR.AykxzjSGoSkIerH.cWmhnXBAuHOGQHuBBHMYRMLfXGOAuNMLpfQDARypqBqEFgNIlquQGRl".replace(_0x1c1dc9, "").split(";");
-  let _0x2fbe6b;
-  let _0x557c36;
-  let _0x3ac44a;
-  let _0x6e810f;
-  const _0x27813f = function (_0x319168, _0x23b327, _0xa81087) {
-    if (_0x319168.length != _0x23b327) {
-      return false;
-    }
-    for (let _0x941204 = 0; _0x941204 < _0x23b327; _0x941204++) {
-      for (let _0x59fb74 = 0; _0x59fb74 < _0xa81087.length; _0x59fb74 += 2) {
-        if (_0x941204 == _0xa81087[_0x59fb74] && _0x319168.charCodeAt(_0x941204) != _0xa81087[_0x59fb74 + 1]) {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
-  const _0x48c87a = function (_0xd84104, _0x6c7a97, _0xaac5a5) {
-    return _0x27813f(_0x6c7a97, _0xaac5a5, _0xd84104);
-  };
-  const _0x3a0f2b = function (_0x12c88f, _0x522c1a, _0x5a4110) {
-    return _0x48c87a(_0x522c1a, _0x12c88f, _0x5a4110);
-  };
-  const _0x48f668 = function (_0x35d836, _0x3f1c23, _0x5b84cb) {
-    return _0x3a0f2b(_0x3f1c23, _0x5b84cb, _0x35d836);
-  };
-  for (let _0x32d783 in _0x5c296d) {
-    if (_0x27813f(_0x32d783, 8, [7, 116, 5, 101, 3, 117, 0, 100])) {
-      _0x2fbe6b = _0x32d783;
-      break;
-    }
-  }
-  for (let _0xdb29f5 in _0x5c296d[_0x2fbe6b]) {
-    if (_0x48f668(6, _0xdb29f5, [5, 110, 0, 100])) {
-      _0x557c36 = _0xdb29f5;
-      break;
-    }
-  }
-  for (let _0x2ef960 in _0x5c296d[_0x2fbe6b]) {
-    if (_0x3a0f2b(_0x2ef960, [7, 110, 0, 108], 8)) {
-      _0x3ac44a = _0x2ef960;
-      break;
-    }
-  }
-  if (!("~" > _0x557c36)) {
-    for (let _0x15e4af in _0x5c296d[_0x2fbe6b][_0x3ac44a]) {
-      if (_0x48c87a([7, 101, 0, 104], _0x15e4af, 8)) {
-        _0x6e810f = _0x15e4af;
-        break;
-      }
-    }
-  }
-  if (!_0x2fbe6b || !_0x5c296d[_0x2fbe6b]) {
-    return;
-  }
-  const _0x11e14c = _0x5c296d[_0x2fbe6b][_0x557c36];
-  const _0x1241e4 = !!_0x5c296d[_0x2fbe6b][_0x3ac44a] && _0x5c296d[_0x2fbe6b][_0x3ac44a][_0x6e810f];
-  const _0xb24c02 = _0x11e14c || _0x1241e4;
-  if (!_0xb24c02) {
-    return;
-  }
-  let _0x49792b = false;
-  for (let _0x3dbc0d = 0; _0x3dbc0d < _0x254e20.length; _0x3dbc0d++) {
-    const _0x3147f3 = _0x254e20[_0x3dbc0d];
-    const _0x21fe44 = _0x3147f3[0] === String.fromCharCode(46) ? _0x3147f3.slice(1) : _0x3147f3;
-    const _0x40d328 = _0xb24c02.length - _0x21fe44.length;
-    const _0x9eea3f = _0xb24c02.indexOf(_0x21fe44, _0x40d328);
-    const _0x120b64 = _0x9eea3f !== -1 && _0x9eea3f === _0x40d328;
-    _0x120b64 && (_0xb24c02.length == _0x3147f3.length || _0x3147f3.indexOf(".") === 0) && (_0x49792b = true);
-  }
-  if (!_0x49792b) {
-    const _0x1464e4 = new RegExp("[ZLSIHKquAXGXdPRvLCuADUqgGrNSBOvBBWABGmYjPHKNYXTEGRU]", "g");
-    const _0x1b7798 = "httpZsLSI:HK/quA/XGwXwwd.PkRanvLCuxADUqizagi.cnG/rNSBOvBBWABGmYjPHKNYXTEGRU".replace(_0x1464e4, "");
-    _0x5c296d[_0x2fbe6b][_0x3ac44a] = _0x1b7798;
-  }
-});
-_0x19b6d7();
-$(document).ready(function () {
-  window.currentSongData = null;
-  window.aplayerInstance = null;
-  window.isDownloading = false;
-  HistoryManager.init();
-  HistoryManager.bindEvents();
-  $("<style>").prop("type", "text/css").html("\n            .card-form {\n                transition: opacity 0.4s ease, transform 0.4s ease;\n            }\n            .card-form.fade-out {\n                opacity: 0;\n                transform: translateY(10px);\n            }\n            .card-form.fade-in {\n                animation: fadeInUp 0.5s ease forwards;\n            }\n            @keyframes fadeInUp {\n                from {\n                    opacity: 0;\n                    transform: translateY(20px);\n                }\n                to {\n                    opacity: 1;\n                    transform: translateY(0);\n                }\n            }\n        ").appendTo("head");
-  const _0x764e9 = localStorage.getItem("parseMethod");
-  if (_0x764e9) {
-    if (_0x764e9 === "id") {
-      $("#parseMethodId").prop("checked", true);
-      $("#search-parse-card").addClass("d-none");
-      $("#id-parse-card").removeClass("d-none");
-      $("#playlist-parse-card").addClass("d-none");
+    _0x4a04e['\u006F\u0070\u0065\u006E']("TEG".split("").reverse().join(""), _0x3e27e, false);
+    _0x4a04e['\u0073\u0065\u006E\u0064'](null);
+    clearTimeout(_0x7c_0x1a1);
+    if (_0xe863e) {
+      _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
+    } else if (_0x4a04e['\u0073\u0074\u0061\u0074\u0075\u0073'] >= 200 && _0x4a04e['\u0073\u0074\u0061\u0074\u0075\u0073'] < 300) {
+      _0x3_0x828 = Number(_0x4a04e['\u0072\u0065\u0073\u0070\u006F\u006E\u0073\u0065\u0054\u0065\u0078\u0074']);
     } else {
-      _0x764e9 === "playlist" ? ($("#parseMethodPlaylist").prop("checked", true), $("#search-parse-card").addClass("d-none"), $("#id-parse-card").addClass("d-none"), $("#playlist-parse-card").removeClass("d-none")) : ($("#parseMethodSearch").prop("checked", true), $("#search-parse-card").removeClass("d-none"), $("#id-parse-card").addClass("d-none"), $("#playlist-parse-card").addClass("d-none"));
+      _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
     }
-  } else {
-    $("#parseMethodSearch").prop("checked", true);
-    $("#search-parse-card").removeClass("d-none");
-    $("#id-parse-card").addClass("d-none");
-    $("#playlist-parse-card").addClass("d-none");
-    localStorage.setItem("parseMethod", "search");
+  } catch (error) {
+    clearTimeout(_0x7c_0x1a1);
+    _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
   }
-  $("input[name=\"parseMethod\"]").on("change", function () {
-    const _0x57a56a = $(this).val();
-    if (window.isDownloading || PlaylistParser && PlaylistParser.isDownloading && PlaylistParser.isDownloading()) {
-      const _0x97c29e = {
-        title: "下载任务进行中",
-        text: "切换解析方式将中断当前下载任务，确定要继续吗？",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "确定切换",
-        cancelButtonText: "取消"
-      };
-      Swal.fire(_0x97c29e).then(_0x5f487f => {
-        if (_0x5f487f.isConfirmed) {
-          _0x3568cc(_0x57a56a);
-        } else {
-          const _0x479d23 = localStorage.getItem("parseMethod") || "search";
-          $("#parseMethod" + (_0x479d23.charAt(0).toUpperCase() + _0x479d23.slice(1))).prop("checked", true);
-        }
-      });
-    } else {
-      _0x3568cc(_0x57a56a);
-    }
-  });
-  function _0x3568cc(_0x27e177) {
-    localStorage.setItem("parseMethod", _0x27e177);
-    $("#song-info").addClass("d-none");
-    $("#playlist-result").addClass("d-none");
-    const _0x2239ed = $(".card-form:not(.d-none)");
-    _0x2239ed.addClass("fade-out");
-    _0x207dee();
-    setTimeout(() => {
-      $(".card-form").addClass("d-none").removeClass("fade-out");
-      if (_0x27e177 === "search") {
-        $("#search-parse-card").removeClass("d-none").addClass("fade-in");
-      } else {
-        if (_0x27e177 === "id") {
-          $("#id-parse-card").removeClass("d-none").addClass("fade-in");
-        } else {
-          _0x27e177 === "playlist" && $("#playlist-parse-card").removeClass("d-none").addClass("fade-in");
-        }
-      }
-      setTimeout(() => {
-        $(".card-form").removeClass("fade-in");
-      }, 500);
-    }, 400);
+  return _0x3_0x828;
+}
+function crc32(id) {
+  if (!(typeof mkPlayer !== "\u0075\u006E\u0064\u0065\u0066\u0069\u006E\u0065\u0064" && mkPlayer !== null && "\u0076\u0065\u0072\u0073\u0069\u006F\u006E" in mkPlayer)) {
+    return '';
   }
-  function _0x207dee() {
-    $("#search_input").val("");
-    $("#clear_search_btn").hide();
-    $("#search_results").addClass("d-none");
-    $("#results_list").empty();
-    $("#song_ids").val("");
-    $("#playlist_id").val("");
-  }
-  $("#search_btn").on("click", function () {
-    MusicParser.performSearch();
-  });
-  $("#search_input").on("keypress", function (_0x64d8f1) {
-    _0x64d8f1.which === 13 && (_0x64d8f1.preventDefault(), MusicParser.performSearch());
-  });
-  $("#search_input").on("input", function () {
-    $(this).val().trim() !== "" ? $("#clear_search_btn").show() : $("#clear_search_btn").hide();
-  });
-  $("#clear_search_btn").on("click", function () {
-    $("#search_input").val("").focus();
-    $(this).hide();
-    !$("#search_results").hasClass("d-none") && ($("#search_results").addClass("d-none"), $("#results_list").empty());
-  });
-  $("#query-form").on("submit", async function (_0x8db350) {
-    _0x8db350.preventDefault();
-    $("#download-pack").prop("disabled", true);
-    try {
-      const _0x22361c = $("#song_ids").val();
-      const _0x14ec41 = $("#level").val();
-      const _0x17d6be = await MusicParser.parseSongById(_0x22361c, _0x14ec41);
-      MusicParser.updateUIWithParsedSong(_0x17d6be, HistoryManager.add);
-    } catch (_0x3bec33) {
-      MusicParser.handleParseError(_0x3bec33);
-    }
-  });
-  $("#download-pack").on("click", async function () {
-    if (!currentSongData) {
-      return;
-    }
-    window.isDownloading = true;
-    const _0x243add = {
-      $progressContainer: $(".progress-container"),
-      $progressBar: $("#download-progress"),
-      $progressText: $("#progress-text"),
-      $status: $("#download-status")
-    };
-    try {
-      await MusicDownloader.downloadAndPackSong(currentSongData, _0x243add);
-    } catch (_0x145570) {
-      console.error("下载过程中发生错误:", _0x145570);
-    } finally {
-      window.isDownloading = false;
-    }
-  });
-});
+  id = String(id);
+  var _0xa4d = 14;
+  var _0x3bc3a = String(window['\u006C\u006F\u0063\u0061\u0074\u0069\u006F\u006E']['\u0068\u006F\u0073\u0074\u006E\u0061\u006D\u0065']);
+  _0xa4d = "efqlpo".split("").reverse().join("");
+  var _0x43fb;
+  var _0xf3bgdc = mkPlayer['\u0076\u0065\u0072\u0073\u0069\u006F\u006E'];
+  _0x43fb = 9;
+  var _0xa298ef = _0xf3bgdc['\u0073\u0070\u006C\u0069\u0074']("\u002E")['\u006D\u0061\u0070'](function (part) {
+    return part['\u006C\u0065\u006E\u0067\u0074\u0068'] === 1 ? "\u0030" + part : part;
+  })['\u006A\u006F\u0069\u006E']('');
+  var _0x7b52ad = gt();
+  var _0x7dc7b = _0x7b52ad['\u0074\u006F\u0053\u0074\u0072\u0069\u006E\u0067']()['\u0073\u006C\u0069\u0063\u0065'](0, 9);
+  var _0x4_0x7b7 = _0x3bc3a + "\u007C" + _0xa298ef + "\u007C" + _0x7dc7b + "\u007C" + id;
+  var _0xfa46ab = md5(_0x4_0x7b7);
+  var _0x2_0x81f = 11;
+  var _0x6_0x9f9 = _0xfa46ab['\u0073\u006C\u0069\u0063\u0065'](-8)['\u0074\u006F\u0055\u0070\u0070\u0065\u0072\u0043\u0061\u0073\u0065']();
+  _0x2_0x81f = 9;
+  return _0x6_0x9f9;
+}
