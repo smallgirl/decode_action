@@ -1,127 +1,318 @@
-//Wed Nov 05 2025 21:08:22 GMT+0000 (Coordinated Universal Time)
+//Mon Nov 17 2025 09:47:33 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-!function (n) {
-  "use strict";
-
-  function _0x116c6g(n, t) {
-    var _0x7eafe = 11;
-    var r = (65535 & n) + (65535 & t);
-    _0x7eafe = 12;
-    return (n >> 16) + (t >> 16) + (r >> 16) << 16 | 65535 & r;
-  }
-  function _0x56ac7c(n, t, r, e, o, u) {
-    return _0x116c6g((u = _0x116c6g(_0x116c6g(t, n), _0x116c6g(e, u))) << o | u >>> 32 - o, r);
-  }
-  function _0x1c64f(n, t, r, e, o, u, c) {
-    return _0x56ac7c(t & r | ~t & e, n, t, o, u, c);
-  }
-  function _0xfb_0x5f5(n, t, r, e, o, u, c) {
-    return _0x56ac7c(t & e | r & ~e, n, t, o, u, c);
-  }
-  function _0xd_0x5e9(n, t, r, e, o, u, c) {
-    return _0x56ac7c(t ^ r ^ e, n, t, o, u, c);
-  }
-  function _0xge8d(n, t, r, e, o, u, c) {
-    return _0x56ac7c(r ^ (t | ~e), n, t, o, u, c);
-  }
-  function c(n, t) {
-    var r, e, o, u;
-    n[t >> 5] |= 128 << t % 32, n[14 + (t + 64 >>> 9 << 4)] = t;
-    for (var c = 1732584193, f = -271733879, i = -1732584194, a = 271733878, h = 0; h < n['\u006C\u0065\u006E\u0067\u0074\u0068']; h += 16) c = _0x1c64f(r = c, e = f, o = i, u = a, n[h], 7, -680876936), a = _0x1c64f(a, c, f, i, n[h + 1], 12, -389564586), i = _0x1c64f(i, a, c, f, n[h + 2], 17, 606105819), f = _0x1c64f(f, i, a, c, n[h + 3], 22, -1044525330), c = _0x1c64f(c, f, i, a, n[h + 4], 7, -176418897), a = _0x1c64f(a, c, f, i, n[h + 5], 12, 1200080426), i = _0x1c64f(i, a, c, f, n[h + 6], 17, -1473231341), f = _0x1c64f(f, i, a, c, n[h + 7], 22, -45705983), c = _0x1c64f(c, f, i, a, n[h + 8], 7, 1770035416), a = _0x1c64f(a, c, f, i, n[h + 9], 12, -1958414417), i = _0x1c64f(i, a, c, f, n[h + 10], 17, -42063), f = _0x1c64f(f, i, a, c, n[h + 11], 22, -1990404162), c = _0x1c64f(c, f, i, a, n[h + 12], 7, 1804603682), a = _0x1c64f(a, c, f, i, n[h + 13], 12, -40341101), i = _0x1c64f(i, a, c, f, n[h + 14], 17, -1502002290), c = _0xfb_0x5f5(c, f = _0x1c64f(f, i, a, c, n[h + 15], 22, 1236535329), i, a, n[h + 1], 5, -165796510), a = _0xfb_0x5f5(a, c, f, i, n[h + 6], 9, -1069501632), i = _0xfb_0x5f5(i, a, c, f, n[h + 11], 14, 643717713), f = _0xfb_0x5f5(f, i, a, c, n[h], 20, -373897302), c = _0xfb_0x5f5(c, f, i, a, n[h + 5], 5, -701558691), a = _0xfb_0x5f5(a, c, f, i, n[h + 10], 9, 38016083), i = _0xfb_0x5f5(i, a, c, f, n[h + 15], 14, -660478335), f = _0xfb_0x5f5(f, i, a, c, n[h + 4], 20, -405537848), c = _0xfb_0x5f5(c, f, i, a, n[h + 9], 5, 568446438), a = _0xfb_0x5f5(a, c, f, i, n[h + 14], 9, -1019803690), i = _0xfb_0x5f5(i, a, c, f, n[h + 3], 14, -187363961), f = _0xfb_0x5f5(f, i, a, c, n[h + 8], 20, 1163531501), c = _0xfb_0x5f5(c, f, i, a, n[h + 13], 5, -1444681467), a = _0xfb_0x5f5(a, c, f, i, n[h + 2], 9, -51403784), i = _0xfb_0x5f5(i, a, c, f, n[h + 7], 14, 1735328473), c = _0xd_0x5e9(c, f = _0xfb_0x5f5(f, i, a, c, n[h + 12], 20, -1926607734), i, a, n[h + 5], 4, -378558), a = _0xd_0x5e9(a, c, f, i, n[h + 8], 11, -2022574463), i = _0xd_0x5e9(i, a, c, f, n[h + 11], 16, 1839030562), f = _0xd_0x5e9(f, i, a, c, n[h + 14], 23, -35309556), c = _0xd_0x5e9(c, f, i, a, n[h + 1], 4, -1530992060), a = _0xd_0x5e9(a, c, f, i, n[h + 4], 11, 1272893353), i = _0xd_0x5e9(i, a, c, f, n[h + 7], 16, -155497632), f = _0xd_0x5e9(f, i, a, c, n[h + 10], 23, -1094730640), c = _0xd_0x5e9(c, f, i, a, n[h + 13], 4, 681279174), a = _0xd_0x5e9(a, c, f, i, n[h], 11, -358537222), i = _0xd_0x5e9(i, a, c, f, n[h + 3], 16, -722521979), f = _0xd_0x5e9(f, i, a, c, n[h + 6], 23, 76029189), c = _0xd_0x5e9(c, f, i, a, n[h + 9], 4, -640364487), a = _0xd_0x5e9(a, c, f, i, n[h + 12], 11, -421815835), i = _0xd_0x5e9(i, a, c, f, n[h + 15], 16, 530742520), c = _0xge8d(c, f = _0xd_0x5e9(f, i, a, c, n[h + 2], 23, -995338651), i, a, n[h], 6, -198630844), a = _0xge8d(a, c, f, i, n[h + 7], 10, 1126891415), i = _0xge8d(i, a, c, f, n[h + 14], 15, -1416354905), f = _0xge8d(f, i, a, c, n[h + 5], 21, -57434055), c = _0xge8d(c, f, i, a, n[h + 12], 6, 1700485571), a = _0xge8d(a, c, f, i, n[h + 3], 10, -1894986606), i = _0xge8d(i, a, c, f, n[h + 10], 15, -1051523), f = _0xge8d(f, i, a, c, n[h + 1], 21, -2054922799), c = _0xge8d(c, f, i, a, n[h + 8], 6, 1873313359), a = _0xge8d(a, c, f, i, n[h + 15], 10, -30611744), i = _0xge8d(i, a, c, f, n[h + 6], 15, -1560198380), f = _0xge8d(f, i, a, c, n[h + 13], 21, 1309151649), c = _0xge8d(c, f, i, a, n[h + 4], 6, -145523070), a = _0xge8d(a, c, f, i, n[h + 11], 10, -1120210379), i = _0xge8d(i, a, c, f, n[h + 2], 15, 718787259), f = _0xge8d(f, i, a, c, n[h + 9], 21, -343485551), c = _0x116c6g(c, r), f = _0x116c6g(f, e), i = _0x116c6g(i, o), a = _0x116c6g(a, u);
-    return [c, f, i, a];
-  }
-  function _0x77f8c(n) {
-    for (var t = "", r = 32 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t += String['\u0066\u0072\u006F\u006D\u0043\u0068\u0061\u0072\u0043\u006F\u0064\u0065'](n[e >> 5] >>> e % 32 & 255);
-    return t;
-  }
-  function _0x4cbe4f(n) {
-    var _0x_0x9c8;
-    var t = [];
-    _0x_0x9c8 = 7;
-    for (t[(n['\u006C\u0065\u006E\u0067\u0074\u0068'] >> 2) - 1] = undefined, e = 0; e < t['\u006C\u0065\u006E\u0067\u0074\u0068']; e += 1) t[e] = 0;
-    for (var r = 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'], e = 0; e < r; e += 8) t[e >> 5] |= (255 & n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](e / 8)) << e % 32;
-    return t;
-  }
-  function e(n) {
-    for (var t, r = "\u0030\u0031\u0032\u0033\u0034\u0035\u0036\u0037\u0038\u0039\u0061\u0062\u0063\u0064\u0065\u0066", e = "", o = 0; o < n['\u006C\u0065\u006E\u0067\u0074\u0068']; o += 1) t = n['\u0063\u0068\u0061\u0072\u0043\u006F\u0064\u0065\u0041\u0074'](o), e += r['\u0063\u0068\u0061\u0072\u0041\u0074'](t >>> 4 & 15) + r['\u0063\u0068\u0061\u0072\u0041\u0074'](15 & t);
-    return e;
-  }
-  function _0xddd4fg(n) {
-    return unescape(encodeURIComponent(n));
-  }
-  function _0x04461d(n) {
-    return _0x77f8c(c(_0x4cbe4f(n = _0xddd4fg(n)), 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068']));
-  }
-  function _0xa7cfg(n, t) {
-    return function (n, t) {
-      var r,
-        e = _0x4cbe4f(n),
-        o = [],
-        u = [];
-      for (o[15] = u[15] = undefined, 16 < e['\u006C\u0065\u006E\u0067\u0074\u0068'] && (e = c(e, 8 * n['\u006C\u0065\u006E\u0067\u0074\u0068'])), r = 0; r < 16; r += 1) o[r] = 909522486 ^ e[r], u[r] = 1549556828 ^ e[r];
-      return t = c(o['\u0063\u006F\u006E\u0063\u0061\u0074'](_0x4cbe4f(t)), 512 + 8 * t['\u006C\u0065\u006E\u0067\u0074\u0068']), _0x77f8c(c(u['\u0063\u006F\u006E\u0063\u0061\u0074'](t), 640));
-    }(_0xddd4fg(n), _0xddd4fg(t));
-  }
-  function t(n, t, r) {
-    return t ? r ? _0xa7cfg(t, n) : e(_0xa7cfg(t, n)) : r ? _0x04461d(n) : e(_0x04461d(n));
-  }
-  "\u0066\u0075\u006E\u0063\u0074\u0069\u006F\u006E" == typeof define && define['\u0061\u006D\u0064'] ? define(function () {
-    return t;
-  }) : "\u006F\u0062\u006A\u0065\u0063\u0074" == typeof module && module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] ? module['\u0065\u0078\u0070\u006F\u0072\u0074\u0073'] = t : n['\u006D\u0064\u0035'] = t;
-}(this);
-function gt() {
-  var _0x4e7b = 7;
-  var _0x3e27e = "emit/noisiver/moc.ayalamix.www//:sptth".split("").reverse().join("");
-  _0x4e7b = 0;
-  var _0xb5aeac;
-  var _0x4a04e = new XMLHttpRequest();
-  _0xb5aeac = 2;
-  var _0x3_0x828 = null;
-  var _0xe863e = false;
-  var _0x7c_0x1a1 = setTimeout(function () {
-    _0xe863e = true;
-    if (_0x4a04e['\u0072\u0065\u0061\u0064\u0079\u0053\u0074\u0061\u0074\u0065'] !== 4) {
-      _0x4a04e['\u0061\u0062\u006F\u0072\u0074']();
-    }
-  }, 2000);
-  try {
-    _0x4a04e['\u006F\u0070\u0065\u006E']("TEG".split("").reverse().join(""), _0x3e27e, false);
-    _0x4a04e['\u0073\u0065\u006E\u0064'](null);
-    clearTimeout(_0x7c_0x1a1);
-    if (_0xe863e) {
-      _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
-    } else if (_0x4a04e['\u0073\u0074\u0061\u0074\u0075\u0073'] >= 200 && _0x4a04e['\u0073\u0074\u0061\u0074\u0075\u0073'] < 300) {
-      _0x3_0x828 = Number(_0x4a04e['\u0072\u0065\u0073\u0070\u006F\u006E\u0073\u0065\u0054\u0065\u0078\u0074']);
-    } else {
-      _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
-    }
-  } catch (error) {
-    clearTimeout(_0x7c_0x1a1);
-    _0x3_0x828 = new Date()['\u0067\u0065\u0074\u0054\u0069\u006D\u0065']();
-  }
-  return _0x3_0x828;
+const lodash = require("lodash");
+const fs = require("fs");
+const axios = require("axios");
+const {
+  time,
+  count
+} = require("console");
+const {
+  url
+} = require("inspector");
+const {
+  post
+} = require("./utils/http");
+const {
+  type
+} = require("os");
+function search(_0xf14c4f, _0x1f5449, _0x194f6a) {
+  return new Promise((_0x48b0cd, _0x2e0e5c) => {
+    const _0x5b9cf6 = App.signature(_0xf14c4f, String(_0x1f5449 + 1), _0x194f6a);
+    post("search", {
+      search: _0xf14c4f,
+      page: _0x1f5449 + 1,
+      type: _0x194f6a,
+      sing: _0x5b9cf6
+    }).then(_0x58e0b9 => {
+      if (!_0x58e0b9?.["data"]) {
+        return _0x2e0e5c("无数据");
+      }
+      switch (_0x194f6a) {
+        case "album":
+          const _0x14e7b4 = [];
+          _0x58e0b9?.["data"]["forEach"](_0x2344e0 => {
+            _0x14e7b4.push({
+              id: _0x2344e0.id,
+              name: _0x2344e0.name,
+              singer: _0x2344e0.singer,
+              artwork: _0x2344e0.artwork,
+              publish_date: _0x2344e0.publish_date
+            });
+          });
+          return _0x48b0cd(JSON.stringify({
+            message: "获取数据成功",
+            has_next_page: true,
+            data: {
+              albums: _0x14e7b4
+            }
+          }));
+        case "song":
+          const _0x32fca3 = [];
+          _0x58e0b9?.["data"]["forEach"](_0x2be188 => {
+            _0x32fca3.push({
+              id: _0x2be188.id,
+              name: _0x2be188.name,
+              singer: _0x2be188.singer,
+              album: _0x2be188.album,
+              artwork: _0x2be188.artwork,
+              file: {
+                size_128k: _0x2be188.size_128K,
+                size_320k: _0x2be188.size_320k,
+                size_flac: _0x2be188.size_flac,
+                size_hires: _0x2be188.size_hires
+              }
+            });
+          });
+          return _0x48b0cd(JSON.stringify({
+            message: "获取数据成功",
+            has_next_page: true,
+            data: {
+              songs: _0x32fca3
+            }
+          }));
+        default:
+          return _0x2e0e5c("不支持搜索该类型");
+      }
+    }).catch(_0x38a6c7 => {
+      _0x2e0e5c(_0x38a6c7);
+    });
+  });
 }
-function crc32(id) {
-  if (!(typeof mkPlayer !== "\u0075\u006E\u0064\u0065\u0066\u0069\u006E\u0065\u0064" && mkPlayer !== null && "\u0076\u0065\u0072\u0073\u0069\u006F\u006E" in mkPlayer)) {
-    return '';
-  }
-  id = String(id);
-  var _0xa4d = 14;
-  var _0x3bc3a = String(window['\u006C\u006F\u0063\u0061\u0074\u0069\u006F\u006E']['\u0068\u006F\u0073\u0074\u006E\u0061\u006D\u0065']);
-  _0xa4d = "efqlpo".split("").reverse().join("");
-  var _0x43fb;
-  var _0xf3bgdc = mkPlayer['\u0076\u0065\u0072\u0073\u0069\u006F\u006E'];
-  _0x43fb = 9;
-  var _0xa298ef = _0xf3bgdc['\u0073\u0070\u006C\u0069\u0074']("\u002E")['\u006D\u0061\u0070'](function (part) {
-    return part['\u006C\u0065\u006E\u0067\u0074\u0068'] === 1 ? "\u0030" + part : part;
-  })['\u006A\u006F\u0069\u006E']('');
-  var _0x7b52ad = gt();
-  var _0x7dc7b = _0x7b52ad['\u0074\u006F\u0053\u0074\u0072\u0069\u006E\u0067']()['\u0073\u006C\u0069\u0063\u0065'](0, 9);
-  var _0x4_0x7b7 = _0x3bc3a + "\u007C" + _0xa298ef + "\u007C" + _0x7dc7b + "\u007C" + id;
-  var _0xfa46ab = md5(_0x4_0x7b7);
-  var _0x2_0x81f = 11;
-  var _0x6_0x9f9 = _0xfa46ab['\u0073\u006C\u0069\u0063\u0065'](-8)['\u0074\u006F\u0055\u0070\u0070\u0065\u0072\u0043\u0061\u0073\u0065']();
-  _0x2_0x81f = 9;
-  return _0x6_0x9f9;
+function getAlbumInfo(_0x43648d, _0x21b69e, _0x19e10e) {
+  return new Promise((_0x2bfb13, _0x577f3f) => {
+    const _0x5d97cd = App.signature(_0x43648d);
+    post("album/info/" + _0x43648d, {
+      sing: _0x5d97cd
+    }).then(_0x45c654 => {
+      if (!_0x45c654?.["data"]?.["songs"]) {
+        return _0x577f3f("无数据");
+      }
+      const _0x28fe4f = [];
+      _0x45c654?.["data"]?.["songs"]["forEach"](_0x5bf527 => {
+        _0x28fe4f.push({
+          id: _0x5bf527.id,
+          name: _0x5bf527.name,
+          singer: _0x5bf527.singer,
+          album: _0x5bf527.album,
+          artwork: _0x5bf527.artwork,
+          file: {
+            size_128k: _0x5bf527.size_128K,
+            size_320k: _0x5bf527.size_320k,
+            size_flac: _0x5bf527.size_flac,
+            size_hires: _0x5bf527.size_hires
+          }
+        });
+      });
+      return _0x2bfb13(JSON.stringify({
+        message: "获取数据成功",
+        has_next_page: false,
+        data: {
+          songs: _0x28fe4f
+        }
+      }));
+    }).catch(_0x4baa1a => {
+      _0x577f3f(_0x4baa1a);
+    });
+  });
 }
+function getPlayListInfo(_0x5aded5, _0x32ba3b, _0x330b92) {
+  return new Promise((_0x447b30, _0x508ad3) => {
+    const _0x5449c0 = App.signature(_0x5aded5, String(_0x32ba3b + 1));
+    post("playlist/info", {
+      sing: _0x5449c0,
+      id: _0x5aded5,
+      page: _0x32ba3b + 1
+    }).then(_0x14c960 => {
+      if (!_0x14c960?.["data"]?.["songs"]) {
+        return _0x508ad3("无数据");
+      }
+      const _0x54c108 = [];
+      _0x14c960?.["data"]?.["songs"]["forEach"](_0x1f622d => {
+        _0x54c108.push({
+          id: _0x1f622d.id,
+          name: _0x1f622d.name,
+          singer: _0x1f622d.singer,
+          album: _0x1f622d.album,
+          artwork: _0x1f622d.artwork,
+          file: {
+            size_128k: _0x1f622d.size_128K,
+            size_320k: _0x1f622d.size_320k,
+            size_flac: _0x1f622d.size_flac,
+            size_hires: _0x1f622d.size_hires
+          }
+        });
+      });
+      return _0x447b30(JSON.stringify({
+        message: "获取数据成功",
+        has_next_page: false,
+        data: {
+          songs: _0x54c108
+        }
+      }));
+    }).catch(_0x555715 => {
+      _0x508ad3(_0x555715);
+    });
+  });
+}
+function getTopListInfo(_0x5b4c70, _0x5bf47f, _0x3f639b) {
+  return new Promise((_0x52bbca, _0x3b8b3e) => {
+    axios.get("http://i.ijanz.cn/core/cs.php").then(_0x38caf9 => {
+      if (!_0x38caf9.data) {
+        _0x3b8b3e(JSON.stringify({
+          message: "获取数据失败"
+        }));
+        return;
+      }
+      const _0x365ad3 = [];
+      _0x38caf9.data.forEach(_0x3f8fd7 => {
+        _0x365ad3.push({
+          id: _0x3f8fd7.songid,
+          name: _0x3f8fd7.title,
+          singer: _0x3f8fd7.author,
+          album: {
+            id: "",
+            name: _0x3f8fd7.album,
+            artwork: _0x3f8fd7.pic
+          },
+          artwork: _0x3f8fd7.pic,
+          file: {
+            size_128k: 100,
+            size_320k: 111,
+            size_flac: 222,
+            size_hires: 333
+          }
+        });
+      });
+      _0x52bbca(JSON.stringify({
+        message: "获取数据成功",
+        has_next_page: false,
+        data: {
+          songs: _0x365ad3
+        }
+      }));
+    }).catch(_0x416293 => {
+      _0x3b8b3e(JSON.stringify({
+        message: "获取数据失败"
+      }));
+    });
+  });
+}
+function getSongUrl(_0x297f7a, _0xe0db84, _0xef5711) {
+  return new Promise((_0x19a443, _0x515cca) => {
+    const _0xe70443 = App.signature(_0x297f7a, _0xe0db84);
+    post("song/url/" + _0x297f7a + "/" + _0xe0db84, {
+      sing: _0xe70443
+    }).then(_0x455bf2 => {
+      if (!_0x455bf2?.["data"]) {
+        return _0x515cca("无数据");
+      }
+      _0x19a443(JSON.stringify({
+        message: "获取数据成功",
+        data: {
+          url: _0x455bf2?.["data"],
+          headers: {
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
+          }
+        }
+      }));
+    }).catch(_0x12a108 => {
+      _0x515cca(_0x12a108);
+    });
+  });
+}
+function getLyric(_0x1ddc54, _0x151b94, _0x35a620) {
+  return new Promise((_0x2a41a0, _0x4f93d8) => {
+    const _0x26cd0b = App.signature(_0x1ddc54);
+    post("lyric/" + _0x1ddc54, {
+      sing: _0x26cd0b
+    }).then(_0x263724 => {
+      if (!_0x263724?.["data"]) {
+        return _0x4f93d8("无数据");
+      }
+      lyric = _0x263724?.["data"]?.["lyric"];
+      trans = _0x263724?.["data"]?.["trans"];
+      _0x2a41a0(JSON.stringify({
+        message: "获取数据成功",
+        data: {
+          lyric: lyric,
+          trans: trans
+        }
+      }));
+    }).catch(_0x3b506f => {
+      _0x4f93d8(_0x3b506f);
+    });
+  });
+}
+function getSongInfo(_0x10e575, _0x44f5fe) {
+  return new Promise((_0x60bd80, _0x2ee81b) => {
+    const _0x50766f = App.signature(_0x10e575);
+    post("song/info/" + _0x10e575, {
+      sing: _0x50766f
+    }).then(_0xb13586 => {
+      if (!_0xb13586?.["data"]) {
+        return _0x2ee81b("无数据");
+      }
+      item = _0xb13586.data;
+      song = {
+        id: item.songid,
+        name: item.title,
+        singer: item.author,
+        album: {
+          id: "",
+          name: item.album,
+          artwork: item.pic
+        },
+        artwork: item.pic,
+        file: {
+          size_128k: 100,
+          size_320k: 111,
+          size_flac: 222,
+          size_hires: 333
+        }
+      };
+      _0x60bd80(JSON.stringify({
+        message: "获取数据成功",
+        data: song
+      }));
+    }).catch(_0x1a6488 => {
+      _0x2ee81b(_0x1a6488);
+    });
+  });
+}
+function getSongMoreQuality(_0x1efca0, _0x5f29b9) {
+  return new Promise((_0x5991de, _0x35cbe8) => {
+    const _0x47e072 = App.signature(_0x1efca0);
+    post("song/quality/" + _0x1efca0, {
+      sing: _0x47e072
+    }).then(_0x260997 => {
+      const _0x5420a1 = _0x260997?.["data"];
+      if (!Array.isArray(_0x5420a1) || !_0x5420a1.length) {
+        return _0x35cbe8("无数据");
+      }
+      const _0x4b20fb = new Set(["standard", "exhigh", "lossless", "hires"]);
+      const _0xe872df = _0x5420a1.filter(_0x3c9b0e => !_0x4b20fb.has(_0x3c9b0e.key));
+      if (!_0xe872df.length) {
+        return _0x35cbe8("无更高音质");
+      }
+      _0x5991de(JSON.stringify({
+        message: "获取数据成功",
+        data: {
+          quality: _0xe872df
+        }
+      }));
+    }).catch(_0x1ef22f => {
+      _0x35cbe8(_0x1ef22f);
+    });
+  });
+}
+module.exports = {
+  search: search,
+  getAlbumInfo: getAlbumInfo,
+  getPlayListInfo: getPlayListInfo,
+  getSongUrl: getSongUrl,
+  getLyric: getLyric,
+  getSongInfo: getSongInfo,
+  getSongMoreQuality: getSongMoreQuality
+};
