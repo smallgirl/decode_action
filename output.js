@@ -10142,6 +10142,7 @@ webpackJsonp([1], {
       a && (t.headers.satoken = a);
       var e,
         s = new URL(t.url, window.location.origin).pathname.replace(/^\/api(\/|$)/, "/");
+        alert(s);
       return t.headers["TD-Auth-Token"] = (e = s + "|" + Math.floor(Date.now() / 6e4), B.a.HmacSHA256(e, Pt).toString()), t.headers["TD-Auth-Path"] = s, t;
     });
     var Mt = It.a;
